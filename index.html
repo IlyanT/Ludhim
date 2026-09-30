@@ -3,13 +3,369 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Transport express, courses dédiées et sous-traitance depuis le Grand Est vers la France et toute l’Europe." />
-    <meta name="theme-color" content="#0b1120" />
-    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <title>Ludhim Transport &amp; Logistiques | Transport express 24/7</title>
+    <meta name="theme-color" content="#07111f" />
+    <meta name="description" content="Ludhim Transport organise vos transports express, courses dédiées et urgences 24h/24 depuis le Grand Est vers la France et l’Europe." />
+    <meta property="og:title" content="Ludhim Transport — Chaque kilomètre. Sous contrôle." />
+    <meta property="og:description" content="Transport express et dédié, disponible 24h/24 en France et en Europe." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <link rel="canonical" href="https://ludhim.fr/" />
+    <link rel="preload" href="./assets/hero-night.webp" as="image" fetchpriority="high" />
+    <link rel="stylesheet" href="./assets/vendor/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%2307111f'/%3E%3Cpath d='M15 15v27h20v7H8V15h7Zm13 0h28v7H46v27h-8V22H28v-7Z' fill='%23fff'/%3E%3Cpath d='M9 52h22' stroke='%2325c8ff' stroke-width='5'/%3E%3C/svg%3E" />
+    <title>Ludhim Transport | Transport express France &amp; Europe 24/7</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "TransportationService",
+        "name": "Ludhim Transport et Logistique",
+        "url": "https://ludhim.fr/",
+        "telephone": "+33616294059",
+        "email": "contact@ludhim.fr",
+        "address": {"@type": "PostalAddress", "addressLocality": "Serémange-Erzange", "addressCountry": "FR"},
+        "areaServed": ["Grand Est", "France", "Luxembourg", "Europe"],
+        "availableLanguage": ["fr"]
+      }
+    </script>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <a class="skip-link" href="#contenu">Aller au contenu</a>
+    <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" /></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c1 .4 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z" /></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6" /></symbol>
+      <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7V2Z" /></symbol>
+      <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="2" /><circle cx="18" cy="5" r="2" /><path d="M8 19h2c4 0 4-5 0-5s-4-5 0-5h6" /></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z" /><path d="m9 12 2 2 4-5" /></symbol>
+      <symbol id="i-package" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5 9-5Z" /><path d="m3 8 9 5 9-5v9l-9 5-9-5V8Z" /><path d="M12 13v9" /></symbol>
+      <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v11H3V6Zm11 4h4l3 3v4h-7v-7Z" /><circle cx="7" cy="18" r="2" /><circle cx="18" cy="18" r="2" /></symbol>
+      <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 22a8 8 0 0 1 16 0" /></symbol>
+      <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></symbol>
+    </svg>
+
+    <header class="site-header" data-header>
+      <div class="utility-bar">
+        <div class="shell utility-inner">
+          <p><span class="pulse" aria-hidden="true"></span> Permanence transport 24h/24 · 7j/7</p>
+          <div>
+            <a href="mailto:contact@ludhim.fr"><svg><use href="#i-mail" /></svg>contact@ludhim.fr</a>
+            <a href="tel:+33616294059"><svg><use href="#i-phone" /></svg>06 16 29 40 59</a>
+          </div>
+        </div>
+      </div>
+      <div class="nav-wrap">
+        <div class="shell nav-inner">
+          <a class="brand" href="#accueil" aria-label="Ludhim Transport — accueil">
+            <span class="brand-mark"><b>L</b><i></i><b>T</b></span>
+            <span class="brand-name"><strong>LUDHIM</strong><small>TRANSPORT &amp; LOGISTIQUE</small></span>
+          </a>
+          <nav class="desktop-nav" aria-label="Navigation principale">
+            <a href="#expertise">Expertise</a>
+            <a href="#services">Services</a>
+            <a href="#flotte">Flotte</a>
+            <a href="#couverture">Couverture</a>
+          </nav>
+            <a class="button button-small button-light nav-quote" href="#devis">Organiser un transport</a>
+          <button class="menu-button" type="button" aria-label="Ouvrir le menu" aria-expanded="false" data-menu-button>
+            <svg class="menu-open"><use href="#i-menu" /></svg><svg class="menu-close"><use href="#i-close" /></svg>
+          </button>
+        </div>
+      </div>
+      <nav class="mobile-nav" aria-label="Navigation mobile" data-mobile-nav>
+        <a href="#expertise">Expertise</a><a href="#services">Services</a><a href="#flotte">Flotte</a><a href="#couverture">Couverture</a><a href="#devis">Demander un devis</a>
+      </nav>
+    </header>
+
+    <main id="contenu">
+      <section class="hero" id="accueil" aria-labelledby="hero-title">
+        <div class="hero-image" data-parallax-bg aria-hidden="true"></div>
+        <div class="hero-grid-overlay" aria-hidden="true"></div>
+        <div class="shell hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow hero-reveal delay-1"><span>Grand Est</span><i></i>France &amp; Europe</p>
+            <h1 id="hero-title" class="hero-reveal delay-2">Chaque kilomètre.<br /><em>Sous contrôle.</em></h1>
+            <p class="hero-intro hero-reveal delay-3">Transport express, course dédiée et renfort logistique pour les professionnels qui ne peuvent pas se permettre l’à-peu-près.</p>
+            <div class="hero-actions hero-reveal delay-4">
+              <a class="button button-primary" href="#devis">Obtenir une réponse rapide</a>
+              <a class="text-link" href="tel:+33616294059"><span><svg><use href="#i-phone" /></svg></span><b>Urgence transport ?</b><small>06 16 29 40 59</small></a>
+            </div>
+            <div class="hero-proof hero-reveal delay-5" aria-label="Nos garanties">
+              <span><svg><use href="#i-check" /></svg>Interlocuteur direct</span>
+              <span><svg><use href="#i-check" /></svg>Suivi de mission</span>
+              <span><svg><use href="#i-check" /></svg>Preuve de livraison</span>
+            </div>
+          </div>
+
+          <aside class="mission-card hero-reveal delay-4" data-protocol aria-label="Protocole de prise en charge Ludhim">
+            <div class="mission-head">
+              <div><span class="pulse"></span><b>Cellule opérationnelle</b></div>
+              <small>24 / 7</small>
+            </div>
+            <p class="mission-code">PROTOCOLE LUDHIM <span>LT-01</span></p>
+            <ol>
+              <li class="is-active"><span>01</span><div><b>Réception de votre demande</b><small>Départ · arrivée · contrainte horaire</small></div><i>IMMÉDIAT</i></li>
+              <li><span>02</span><div><b>Véhicule et conducteur dédiés</b><small>Une organisation adaptée à la mission</small></div><i>VALIDÉ</i></li>
+              <li><span>03</span><div><b>Suivi jusqu’à la livraison</b><small>Information claire et confirmation finale</small></div><i>SUIVI</i></li>
+            </ol>
+            <div class="mission-foot">
+              <svg><use href="#i-shield" /></svg>
+              <p><b>Une chaîne de décision courte.</b><span>Vous savez qui appeler, à chaque étape.</span></p>
+            </div>
+          </aside>
+        </div>
+        <div class="hero-rail">
+          <div class="shell rail-inner">
+            <p><span>01</span> Express</p><p><span>02</span> Dédié</p><p><span>03</span> Urgent</p><p><span>04</span> Sous-traitance</p>
+            <a href="#expertise">Découvrir notre méthode</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="trust-panel" aria-label="Ludhim en bref">
+        <div class="shell trust-grid">
+          <article><strong>24/7</strong><p>Disponibilité opérationnelle</p></article>
+          <article><strong>Direct</strong><p>Sans rupture de charge</p></article>
+          <article><strong>Grand Est</strong><p>Position stratégique</p></article>
+          <article><strong>Europe</strong><p>Missions transfrontalières</p></article>
+        </div>
+      </section>
+
+      <section class="statement section-pad" id="expertise">
+        <div class="shell statement-grid">
+          <div class="section-index" data-reveal><span>01</span><p>Notre différence</p></div>
+          <div class="statement-main" data-reveal>
+            <p class="kicker">Une logistique à taille humaine</p>
+            <h2>La réactivité n’est pas une promesse.<br /><em>C’est une organisation.</em></h2>
+          </div>
+          <div class="statement-copy" data-reveal>
+            <p>Quand un quai attend, qu’une ligne de production dépend d’une pièce ou qu’un client exige une livraison précise, chaque minute compte. Ludhim mobilise une chaîne courte : un interlocuteur, une décision, une mission suivie.</p>
+            <a class="inline-link" href="#methode">Voir notre protocole</a>
+          </div>
+        </div>
+        <div class="shell value-grid" data-reveal>
+          <article><span><svg><use href="#i-zap" /></svg></span><h3>Décider vite</h3><p>Votre besoin est qualifié rapidement, sans vous faire perdre du temps entre plusieurs services.</p></article>
+          <article><span><svg><use href="#i-route" /></svg></span><h3>Rouler direct</h3><p>Une course dédiée, organisée autour de votre marchandise et de votre échéance.</p></article>
+          <article><span><svg><use href="#i-package" /></svg></span><h3>Confirmer clairement</h3><p>La mission reste suivie jusqu’à la remise et à la preuve de bonne livraison.</p></article>
+        </div>
+      </section>
+
+      <section class="services section-pad" id="services" aria-labelledby="services-title">
+        <div class="shell">
+          <div class="section-heading" data-reveal>
+            <div class="section-index light"><span>02</span><p>Solutions transport</p></div>
+            <div><p class="kicker light">Du besoin ponctuel au flux régulier</p><h2 id="services-title">Une solution nette.<br />Pour chaque contrainte.</h2></div>
+            <p>Industriels, logisticiens, commissionnaires ou distributeurs : nous intervenons lorsque le délai et la fiabilité deviennent décisifs.</p>
+          </div>
+          <div class="service-grid">
+            <article class="service-card featured" data-tilt data-reveal>
+              <div class="service-top"><span>01</span><svg><use href="#i-zap" /></svg></div>
+              <h3>Transport express</h3><p>Prise en charge rapide de vos expéditions urgentes, sensibles ou contraintes par un horaire précis.</p>
+              <ul><li>Départ prioritaire</li><li>Trajet direct</li><li>Information en cours de mission</li></ul>
+              <a href="#devis" data-service-choice="Transport express">Organiser un express</a>
+            </article>
+            <article class="service-card" data-tilt data-reveal>
+              <div class="service-top"><span>02</span><svg><use href="#i-route" /></svg></div>
+              <h3>Course dédiée</h3><p>Un véhicule et un conducteur affectés à votre transport, du point d’enlèvement au destinataire.</p>
+              <ul><li>Sans groupage</li><li>Sans rupture de charge</li><li>Planification sur mesure</li></ul>
+              <a href="#devis" data-service-choice="Course dédiée">Préparer une course</a>
+            </article>
+            <article class="service-card" data-tilt data-reveal>
+              <div class="service-top"><span>03</span><svg><use href="#i-truck" /></svg></div>
+              <h3>Renfort &amp; sous-traitance</h3><p>Un appui fiable pour absorber un pic d’activité, sécuriser une tournée ou maintenir votre qualité de service.</p>
+              <ul><li>Besoin ponctuel ou régulier</li><li>Consignes respectées</li><li>Retour d’information</li></ul>
+              <a href="#devis" data-service-choice="Renfort / sous-traitance">Parler à l’exploitation</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="fleet section-pad" id="flotte" aria-labelledby="fleet-title">
+        <div class="fleet-lines" aria-hidden="true"></div>
+        <div class="shell fleet-grid">
+          <div class="fleet-copy" data-reveal>
+            <div class="section-index light"><span>03</span><p>Capacité terrain</p></div>
+            <p class="kicker light">Le bon format pour la bonne mission</p>
+            <h2 id="fleet-title">Une flotte agile.<br /><em>Prête à partir.</em></h2>
+            <p>Du pli urgent à la marchandise volumineuse, le véhicule est sélectionné selon votre chargement, la distance et les conditions d’accès.</p>
+            <div class="fleet-specs">
+              <article><strong>12 m³</strong><div><b>Master L2H2</b><span>Grand volume · palettes · longues distances</span></div></article>
+              <article><strong>6 m³</strong><div><b>Jumpy / Expert</b><span>Express léger · accès urbain · réactivité</span></div></article>
+            </div>
+            <div class="volume-config" data-volume-config>
+              <div class="volume-config-head">
+                <div><small>Configurateur de chargement</small><strong>Quel véhicule pour votre mission&nbsp;?</strong></div>
+                <output data-volume-output for="volume-range">6 m³</output>
+              </div>
+              <input id="volume-range" type="range" min="1" max="12" step="1" value="6" data-volume-range aria-label="Volume estimé en mètres cubes" />
+              <div class="volume-scale" aria-hidden="true"><span>1 m³</span><span>6 m³</span><span>12 m³</span></div>
+              <div class="vehicle-recommendation" aria-live="polite">
+                <div><small>Véhicule conseillé</small><strong data-vehicle-recommendation>Jumpy / Expert</strong></div>
+                <p data-vehicle-copy>Format agile pour les petits volumes et les accès urbains.</p>
+              </div>
+              <button class="config-cta" type="button" data-volume-to-quote>Utiliser pour mon devis</button>
+            </div>
+            <p class="fleet-note"><svg><use href="#i-shield" /></svg>Véhicule dédié à votre mission, marchandise suivie jusqu’à destination.</p>
+          </div>
+          <div class="fleet-visual" data-fleet-visual data-reveal>
+            <div class="vehicle-halo"></div>
+            <p class="fleet-watermark">LUDHIM</p>
+            <img src="./assets/van-cutout.webp" alt="Fourgon grand volume représentatif de la flotte Ludhim" width="1536" height="1024" loading="lazy" />
+            <div class="vehicle-label"><span class="pulse"></span><p><b>DISPONIBILITÉ</b><small>Grand Est · France · Europe</small></p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="coverage section-pad" id="couverture" aria-labelledby="coverage-title">
+        <div class="shell coverage-heading" data-reveal>
+          <div class="section-index"><span>04</span><p>Rayon d’action</p></div>
+          <div><p class="kicker">Au départ du Grand Est</p><h2 id="coverage-title">Une base en Moselle.<br /><em>L’Europe à portée de route.</em></h2></div>
+          <p>Choisissez une destination, explorez le trajet et transférez votre simulation dans la demande de transport.</p>
+        </div>
+
+        <div class="shell route-studio" data-route-studio data-reveal>
+          <aside class="route-planner">
+            <p class="planner-status"><span class="map-live-dot"></span>Simulateur de couverture</p>
+            <h3>Projetez votre prochaine mission.</h3>
+            <p class="planner-intro">Partez de notre base en Moselle et explorez une sélection de destinations européennes.</p>
+            <label class="route-select-label" for="route-destination">Destination</label>
+            <select id="route-destination" data-route-select>
+              <optgroup label="France"><option value="paris">Paris</option><option value="lyon">Lyon</option><option value="marseille">Marseille</option></optgroup>
+              <optgroup label="Benelux"><option value="luxembourg">Luxembourg</option><option value="brussels">Bruxelles</option><option value="amsterdam">Amsterdam</option></optgroup>
+              <optgroup label="Allemagne"><option value="frankfurt">Francfort</option><option value="munich">Munich</option></optgroup>
+              <optgroup label="Europe du Sud"><option value="milan">Milan</option><option value="barcelona">Barcelone</option></optgroup>
+              <optgroup label="Europe centrale et Est"><option value="prague">Prague</option><option value="vienna">Vienne</option><option value="warsaw">Varsovie</option></optgroup>
+            </select>
+            <div class="route-quick" role="group" aria-label="Destinations rapides">
+              <button class="is-active" type="button" data-route-quick="paris" aria-pressed="true">Paris</button>
+              <button type="button" data-route-quick="luxembourg" aria-pressed="false">Luxembourg</button>
+              <button type="button" data-route-quick="brussels" aria-pressed="false">Bruxelles</button>
+              <button type="button" data-route-quick="frankfurt" aria-pressed="false">Francfort</button>
+              <button type="button" data-route-quick="milan" aria-pressed="false">Milan</button>
+              <button type="button" data-route-quick="warsaw" aria-pressed="false">Varsovie</button>
+            </div>
+            <div class="route-stats" aria-live="polite">
+              <div><small>Destination</small><strong data-route-city>Paris</strong></div>
+              <div><small>Zone</small><strong data-route-zone>France</strong></div>
+              <div><small>Distance indicative*</small><strong data-route-distance>350 km</strong></div>
+              <div><small>Organisation</small><strong>Véhicule dédié</strong></div>
+            </div>
+            <p class="route-note">* Estimation cartographique non contractuelle. Le kilométrage, le délai et la faisabilité sont confirmés avant chaque départ.</p>
+            <button class="button button-primary route-cta" type="button" data-route-to-quote>Préparer cette mission</button>
+          </aside>
+          <div class="real-map-wrap">
+            <div id="europe-map" class="leaflet-map" data-real-map aria-label="Carte interactive réelle de l’Europe, depuis la Moselle"></div>
+            <div class="map-loading" data-map-loading><span></span><b>Chargement de la carte Europe</b></div>
+            <div class="map-controls" aria-label="Contrôles de la carte">
+              <button type="button" data-map-reset>Recentrer l’Europe</button>
+              <button type="button" data-map-toggle aria-pressed="false">Mettre en pause</button>
+            </div>
+            <div class="map-legend" aria-hidden="true"><span><i class="legend-base"></i>Base Ludhim</span><span><i class="legend-route"></i>Trajet simulé</span><span><i class="legend-destination"></i>Destination</span></div>
+            <a class="map-fix-link" href="https://www.openstreetmap.org/fixthemap" target="_blank" rel="noopener noreferrer">Signaler une erreur cartographique</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="method section-pad" id="methode" aria-labelledby="method-title">
+        <div class="shell">
+          <div class="section-heading method-heading" data-reveal>
+            <div class="section-index"><span>05</span><p>Le protocole</p></div>
+            <div><p class="kicker">Une mission lisible de bout en bout</p><h2 id="method-title">Un seul interlocuteur.<br />Zéro zone grise.</h2></div>
+            <p>Des informations utiles au bon moment, sans couche inutile entre votre besoin et le terrain.</p>
+          </div>
+          <div class="timeline" data-timeline data-reveal>
+            <article><span>01</span><div class="timeline-icon"><svg><use href="#i-phone" /></svg></div><h3>Vous nous briefez</h3><p>Départ, destination, horaire, volume et contraintes de livraison.</p></article>
+            <article><span>02</span><div class="timeline-icon"><svg><use href="#i-check" /></svg></div><h3>Nous confirmons</h3><p>Organisation, véhicule, délai et tarif sont posés clairement.</p></article>
+            <article><span>03</span><div class="timeline-icon"><svg><use href="#i-route" /></svg></div><h3>Nous exécutons</h3><p>Enlèvement puis trajet dédié, avec suivi de la mission.</p></article>
+            <article><span>04</span><div class="timeline-icon"><svg><use href="#i-package" /></svg></div><h3>Nous clôturons</h3><p>Remise au destinataire et confirmation de bonne livraison.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq section-pad" id="faq" aria-labelledby="faq-title">
+        <div class="shell faq-grid">
+          <div class="faq-heading" data-reveal>
+            <div class="section-index"><span>06</span><p>Questions terrain</p></div>
+            <p class="kicker">Avant de nous confier la route</p>
+            <h2 id="faq-title">Les réponses utiles.<br /><em>Sans détour.</em></h2>
+            <p>Un besoin atypique&nbsp;? Notre exploitation valide avec vous les contraintes réelles avant le départ.</p>
+            <a class="button button-primary" href="tel:+33616294059">Parler à l’exploitation</a>
+          </div>
+          <div class="faq-list" data-reveal>
+            <details open>
+              <summary>Intervenez-vous la nuit et le week-end&nbsp;?<span></span></summary>
+              <p>Oui. Une permanence est assurée 24h/24 et 7j/7 pour qualifier votre demande et confirmer la disponibilité adaptée à la mission.</p>
+            </details>
+            <details>
+              <summary>Quels documents sont transmis après livraison&nbsp;?<span></span></summary>
+              <p>Selon la mission, nous transmettons la confirmation de livraison, la preuve de livraison ou le bon signé disponible.</p>
+            </details>
+            <details>
+              <summary>Travaillez-vous avec les transporteurs et commissionnaires&nbsp;?<span></span></summary>
+              <p>Oui. Ludhim peut intervenir en renfort ponctuel ou régulier, dans le respect de vos consignes d’exploitation et de communication.</p>
+            </details>
+            <details>
+              <summary>Comment choisir le bon véhicule&nbsp;?<span></span></summary>
+              <p>Le configurateur donne une première orientation selon le volume. Le véhicule final est confirmé après vérification du poids, des dimensions, du chargement et des accès.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote section-pad" id="devis" aria-labelledby="quote-title">
+        <div class="quote-glow" aria-hidden="true"></div>
+        <div class="shell quote-grid">
+          <div class="quote-copy" data-reveal>
+            <p class="kicker light">Votre transport commence ici</p>
+            <h2 id="quote-title">Donnez-nous le trajet.<br /><em>On s’occupe du reste.</em></h2>
+            <p>Pour une urgence, appelez directement. Pour une mission planifiée, préparez votre demande en moins d’une minute.</p>
+            <div class="direct-contact">
+              <a href="tel:+33616294059"><span><svg><use href="#i-phone" /></svg></span><div><small>URGENCE 24/7</small><strong>06 16 29 40 59</strong></div></a>
+              <a href="mailto:contact@ludhim.fr"><span><svg><use href="#i-mail" /></svg></span><div><small>E-MAIL</small><strong>contact@ludhim.fr</strong></div></a>
+            </div>
+          </div>
+          <form class="quote-form" data-quote-form data-reveal>
+            <div class="form-head"><div><span class="pulse"></span><b>Demande de transport</b></div><small>Réponse rapide</small></div>
+            <div class="form-row">
+              <label>Lieu de départ<input name="depart" type="text" autocomplete="address-level2" placeholder="Ex. Metz" required /></label>
+              <label>Destination<input name="destination" type="text" autocomplete="address-level2" placeholder="Ex. Luxembourg" required /></label>
+            </div>
+            <div class="form-row">
+              <label>Date souhaitée<input name="date" type="date" required /></label>
+              <label>Type de besoin<select name="service" required><option value="">Sélectionner</option><option>Transport express</option><option>Course dédiée</option><option>Renfort / sous-traitance</option><option>Autre besoin</option></select></label>
+            </div>
+            <label>Marchandise et contraintes<textarea name="details" rows="4" placeholder="Volume, poids, nombre de palettes, horaires, accès…"></textarea></label>
+            <input name="volume" type="hidden" />
+            <input name="vehicle" type="hidden" />
+            <input name="distance" type="hidden" />
+            <div class="quote-context" data-quote-context hidden aria-live="polite"></div>
+            <button class="button button-primary button-full" type="submit">Préparer ma demande</button>
+            <p class="form-note" data-form-note><svg><use href="#i-shield" /></svg>Aucune donnée n’est stockée : votre messagerie s’ouvrira avec la demande préparée.</p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="shell footer-main">
+        <div>
+          <a class="brand footer-brand" href="#accueil"><span class="brand-mark"><b>L</b><i></i><b>T</b></span><span class="brand-name"><strong>LUDHIM</strong><small>TRANSPORT &amp; LOGISTIQUE</small></span></a>
+          <p>Transport express, dédié et urgent depuis le Grand Est vers la France et l’Europe.</p>
+        </div>
+        <div><h3>Navigation</h3><a href="#expertise">Notre expertise</a><a href="#services">Nos services</a><a href="#flotte">Notre flotte</a><a href="#couverture">Zone d’intervention</a><a href="#faq">Questions fréquentes</a></div>
+        <div><h3>Contact</h3><a href="tel:+33616294059">06 16 29 40 59</a><a href="mailto:contact@ludhim.fr">contact@ludhim.fr</a><span>Serémange-Erzange · Grand Est</span></div>
+      </div>
+      <div class="shell footer-bottom"><p>© <span data-year></span> Ludhim Transport et Logistique · SIREN 991 699 646</p><a href="#accueil">Retour en haut</a></div>
+    </footer>
+
+    <div class="mobile-actions" aria-label="Actions rapides"><a href="tel:+33616294059"><svg><use href="#i-phone" /></svg>Appeler</a><a href="#devis"><svg><use href="#i-mail" /></svg>Demander un devis</a></div>
+    <script src="./assets/vendor/leaflet/leaflet.js" defer></script>
+    <script src="./script.js" defer></script>
   </body>
 </html>
