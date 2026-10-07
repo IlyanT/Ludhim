@@ -1466,3 +1466,308 @@ body{letter-spacing:.012em}
   .ops-live-dot,
   .ops-road>b{animation:none!important}
 }
+
+
+/* Correctif flotte mobile + carte Europe épurée */
+.fleet-visual{
+  isolation:isolate;
+}
+.coverage .route-studio{
+  border:1px solid #d5e1d8;
+  border-radius:8px;
+  background:#f5f8f5;
+  box-shadow:0 24px 64px rgba(19,52,37,.13);
+}
+.coverage .route-planner{
+  background:linear-gradient(160deg,#10291f 0%,#0b2018 100%);
+}
+.coverage .route-planner::after{
+  background:radial-gradient(circle,rgba(77,148,56,.16),transparent 68%);
+}
+.coverage .planner-status{color:#9bb6a7}
+.coverage .planner-intro{color:#9aafa3}
+.coverage .route-select-label{color:#93aa9d}
+.coverage .route-planner select{
+  background-color:#17372a;
+  border-color:rgba(255,255,255,.13);
+  border-radius:4px;
+}
+.coverage .route-planner select:focus{
+  border-color:#6caf5b;
+  box-shadow:0 0 0 3px rgba(108,175,91,.12);
+}
+.coverage .route-quick button{
+  border-radius:3px;
+  color:#9db1a6;
+}
+.coverage .route-quick button:hover{
+  border-color:#72b35e;
+  color:#fff;
+}
+.coverage .route-quick button.is-active{
+  background:#eaf4e8;
+  border-color:#8dc77a;
+  color:#123526;
+}
+.coverage .route-stats small{color:#789084}
+.coverage .route-note{color:#789084}
+.coverage .real-map-wrap{
+  background:#e8eee9;
+}
+.coverage .real-map-wrap::after{
+  border-color:rgba(7,91,63,.16);
+}
+.coverage .leaflet-map{
+  background:#e8eee9;
+}
+.coverage .leaflet-tile-pane{
+  filter:grayscale(.72) saturate(.52) brightness(1.07) contrast(.92) sepia(.08) hue-rotate(72deg);
+}
+.coverage .leaflet-overlay-pane{
+  filter:drop-shadow(0 2px 4px rgba(7,91,63,.16));
+}
+.coverage .leaflet-control-zoom{
+  box-shadow:0 7px 20px rgba(24,54,40,.14)!important;
+}
+.coverage .leaflet-control-zoom a{
+  background:rgba(255,255,255,.96)!important;
+  border-color:#d6e1d9!important;
+  color:#17382b!important;
+}
+.coverage .leaflet-control-zoom a:hover{
+  background:#eef6f0!important;
+  color:#075b3f!important;
+}
+.coverage .leaflet-control-attribution{
+  background:rgba(255,255,255,.86)!important;
+  color:#78877f!important;
+}
+.coverage .leaflet-control-attribution a{color:#3d6f56!important}
+.coverage .leaflet-control-scale-line{
+  background:rgba(255,255,255,.88);
+  border-color:#7f9588!important;
+  color:#334a3e;
+}
+.coverage .leaflet-tooltip{
+  background:#153529!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:3px!important;
+  color:#fff!important;
+}
+.coverage .leaflet-tooltip-top::before{border-top-color:#153529!important}
+.coverage .active-route-path{
+  animation:none;
+}
+.coverage .map-loading{
+  background:#e9efea;
+  color:#17392b;
+}
+.coverage .map-loading::before{
+  background-image:
+    linear-gradient(rgba(7,91,63,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(7,91,63,.04) 1px,transparent 1px);
+}
+.coverage .map-loading span{
+  border-color:rgba(7,91,63,.14);
+  border-top-color:#075b3f;
+}
+.coverage .map-controls{
+  top:22px;
+  right:22px;
+}
+.coverage .map-controls button{
+  backdrop-filter:blur(10px);
+  background:rgba(255,255,255,.93);
+  border:1px solid #d4e0d7;
+  border-radius:3px;
+  color:#214032;
+  box-shadow:0 5px 14px rgba(24,54,40,.08);
+}
+.coverage .map-controls button:hover{
+  background:#075b3f;
+  border-color:#075b3f;
+  color:#fff;
+}
+.coverage .map-legend{
+  top:22px;
+  left:72px;
+  gap:15px;
+  background:rgba(255,255,255,.94);
+  border:1px solid #d6e2d9;
+  border-radius:3px;
+  box-shadow:0 5px 14px rgba(24,54,40,.08);
+}
+.coverage .map-legend span{color:#3b5246}
+.coverage .legend-base{
+  background:#075b3f;
+  box-shadow:0 0 0 3px rgba(7,91,63,.12);
+}
+.coverage .legend-route{background:#075b3f}
+.coverage .legend-destination{
+  background:#78b961;
+  box-shadow:0 0 0 3px rgba(120,185,97,.15);
+}
+.coverage .base-pin{
+  background:#fff;
+  border-color:#075b3f;
+  box-shadow:0 0 0 6px rgba(7,91,63,.1),0 8px 24px rgba(7,91,63,.2);
+  color:#075b3f;
+}
+.coverage .base-pin::before{
+  border-color:rgba(7,91,63,.48);
+}
+.coverage .destination-pin{
+  background:#78b961;
+  border-color:#fff;
+  box-shadow:0 7px 18px rgba(35,75,53,.2);
+}
+.coverage .destination-pin::after{background:#17372a}
+.coverage .vehicle-marker.is-primary .map-van{
+  --vehicle-color:#075b3f;
+  filter:drop-shadow(0 5px 8px rgba(7,91,63,.35));
+}
+.coverage .map-van-body,
+.coverage .map-van-cab,
+.coverage .map-van::before,
+.coverage .map-van::after{
+  border-color:#fff;
+}
+.coverage .map-van::before,
+.coverage .map-van::after{
+  background:#17372a;
+}
+
+/* Le visuel flotte reste dans son cadre sur toutes les petites largeurs. */
+@media(max-width:920px){
+  .fleet-visual{
+    width:100%;
+    max-width:760px;
+    margin:8px auto 0;
+    min-height:500px;
+    overflow:hidden;
+  }
+  .fleet-visual>img{
+    left:50%;
+    top:auto;
+    bottom:-8px;
+    width:min(760px,112vw);
+    max-width:none;
+    transform:translateX(-50%);
+    animation:none;
+  }
+  .vehicle-halo{
+    width:min(650px,92vw);
+    height:min(650px,92vw);
+    top:52%;
+  }
+  .vehicle-label{
+    z-index:4;
+  }
+}
+
+@media(max-width:640px){
+  .fleet{
+    overflow:hidden;
+  }
+  .fleet-grid{
+    gap:24px;
+  }
+  .fleet-visual{
+    min-height:360px;
+    width:calc(100% + 8px);
+    margin:10px -4px 0;
+    overflow:hidden;
+    border-top:1px solid rgba(255,255,255,.08);
+  }
+  .fleet-visual>img{
+    left:50%;
+    bottom:-10px;
+    width:min(565px,145vw);
+    height:auto;
+    transform:translateX(-50%);
+    filter:drop-shadow(0 22px 20px rgba(0,0,0,.35));
+  }
+  .vehicle-halo{
+    width:390px;
+    height:390px;
+    top:55%;
+    background:radial-gradient(circle,rgba(77,148,56,.18),rgba(77,148,56,.035) 48%,transparent 70%);
+  }
+  .fleet-watermark{
+    display:none;
+  }
+  .vehicle-label{
+    left:12px;
+    bottom:13px;
+    max-width:calc(100% - 24px);
+    padding:11px 13px;
+    border-radius:4px;
+    background:rgba(8,28,20,.9);
+  }
+  .vehicle-label b{font-size:.67rem}
+  .vehicle-label small{font-size:.64rem}
+
+  .coverage .route-studio{
+    width:100%;
+    border-radius:5px;
+  }
+  .coverage .route-planner{
+    padding:25px 18px;
+  }
+  .coverage .real-map-wrap,
+  .coverage .leaflet-map{
+    height:430px;
+    min-height:430px;
+  }
+  .coverage .real-map-wrap::after{
+    inset:7px;
+  }
+  .coverage .map-legend{
+    top:14px;
+    left:14px;
+    right:14px;
+    gap:8px 14px;
+    display:flex;
+    flex-wrap:wrap;
+    overflow:visible;
+    padding:9px 10px;
+  }
+  .coverage .map-legend span{
+    font-size:.55rem;
+  }
+  .coverage .map-controls{
+    right:13px;
+    bottom:14px;
+    top:auto;
+    flex-direction:row;
+  }
+  .coverage .map-controls button{
+    min-height:34px;
+    padding:0 10px;
+    font-size:.62rem;
+  }
+  .coverage .leaflet-control-zoom{
+    margin-left:14px!important;
+    margin-top:78px!important;
+  }
+  .coverage .leaflet-control-attribution{
+    font-size:8px!important;
+  }
+}
+
+@media(max-width:390px){
+  .fleet-visual{
+    min-height:330px;
+  }
+  .fleet-visual>img{
+    width:min(525px,148vw);
+  }
+  .coverage .real-map-wrap,
+  .coverage .leaflet-map{
+    height:400px;
+    min-height:400px;
+  }
+  .coverage .map-legend span:nth-child(2){
+    display:none;
+  }
+}
