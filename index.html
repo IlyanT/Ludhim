@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#07111f" />
-    <meta name="description" content="Ludhim Transport organise vos transports express, courses dédiées et urgences 24h/24 depuis le Grand Est vers la France et l’Europe." />
-    <meta property="og:title" content="Ludhim Transport — Chaque kilomètre. Sous contrôle." />
-    <meta property="og:description" content="Transport express et dédié, disponible 24h/24 en France et en Europe." />
+    <meta name="theme-color" content="#075b3f" />
+    <meta name="description" content="Ludhim Transport organise vos transports express et courses dédiées en France et en Europe avec suivi de mission en temps réel, e-CMR numérique signé et preuves de livraison." />
+    <meta property="og:title" content="Ludhim Transport — Transport express, suivi en temps réel & e-CMR" />
+    <meta property="og:description" content="Transport express et dédié avec suivi de mission, e-CMR signé et preuves de livraison en France et en Europe." />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="fr_FR" />
     <link rel="canonical" href="https://ludhim.fr/" />
@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./assets/vendor/leaflet/leaflet.css" />
     <link rel="stylesheet" href="./styles.css" />
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='13' fill='%2307111f'/%3E%3Cpath d='M15 15v27h20v7H8V15h7Zm13 0h28v7H46v27h-8V22H28v-7Z' fill='%23fff'/%3E%3Cpath d='M9 52h22' stroke='%2325c8ff' stroke-width='5'/%3E%3C/svg%3E" />
-    <title>Ludhim Transport | Transport express France &amp; Europe 24/7</title>
+    <title>Ludhim Transport | Express, suivi en temps réel &amp; e-CMR</title>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -47,7 +47,7 @@
       <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></symbol>
       <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4" /><path d="M4 22a8 8 0 0 1 16 0" /></symbol>
       <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></symbol>
-      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></symbol>
+      <symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18" /></symbol><symbol id="i-file-sign" viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6V2Z" /><path d="M14 2v5h5M9 15c2-3 4-3 6-1M9 18h6" /></symbol><symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 7h4l2-3h4l2 3h4v13H4V7Z" /><circle cx="12" cy="13" r="4" /></symbol><symbol id="i-live" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2" /><path d="M8.5 8.5a5 5 0 0 0 0 7M15.5 8.5a5 5 0 0 1 0 7M5.5 5.5a9 9 0 0 0 0 13M18.5 5.5a9 9 0 0 1 0 13" /></symbol><symbol id="i-mobile" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2" /><path d="M10 18h4" /></symbol>
     </svg>
 
     <header class="site-header" data-header>
@@ -62,13 +62,13 @@
       </div>
       <div class="nav-wrap">
         <div class="shell nav-inner">
-          <a class="brand" href="#accueil" aria-label="Ludhim Transport — accueil">
-            <span class="brand-mark"><b>L</b><i></i><b>T</b></span>
-            <span class="brand-name"><strong>LUDHIM</strong><small>TRANSPORT &amp; LOGISTIQUE</small></span>
+          <a class="brand brand-official" href="#accueil" aria-label="Ludhim Transport — accueil">
+            <img src="./logo-ludhim.svg" alt="Ludhim Transport et Logistique" />
           </a>
           <nav class="desktop-nav" aria-label="Navigation principale">
             <a href="#expertise">Expertise</a>
             <a href="#services">Services</a>
+            <a href="#suivi">Suivi &amp; e-CMR</a>
             <a href="#flotte">Flotte</a>
             <a href="#couverture">Couverture</a>
           </nav>
@@ -79,7 +79,7 @@
         </div>
       </div>
       <nav class="mobile-nav" aria-label="Navigation mobile" data-mobile-nav>
-        <a href="#expertise">Expertise</a><a href="#services">Services</a><a href="#flotte">Flotte</a><a href="#couverture">Couverture</a><a href="#devis">Demander un devis</a>
+        <a href="#expertise">Expertise</a><a href="#services">Services</a><a href="#suivi">Suivi &amp; e-CMR</a><a href="#flotte">Flotte</a><a href="#couverture">Couverture</a><a href="#devis">Demander un devis</a>
       </nav>
     </header>
 
@@ -90,15 +90,15 @@
         <div class="shell hero-inner">
           <div class="hero-copy">
             <p class="eyebrow hero-reveal delay-1"><span>Grand Est</span><i></i>France &amp; Europe</p>
-            <h1 id="hero-title" class="hero-reveal delay-2">Chaque kilomètre.<br /><em>Sous contrôle.</em></h1>
-            <p class="hero-intro hero-reveal delay-3">Transport express, course dédiée et renfort logistique pour les professionnels qui ne peuvent pas se permettre l’à-peu-près.</p>
+            <h1 id="hero-title" class="hero-reveal delay-2">Votre transport.<br /><em>Suivi jusqu’à la preuve.</em></h1>
+            <p class="hero-intro hero-reveal delay-3">Transport express, course dédiée et renfort logistique avec suivi de mission en temps réel, e-CMR numérique signé et preuves de livraison centralisées.</p>
             <div class="hero-actions hero-reveal delay-4">
               <a class="button button-primary" href="#devis">Obtenir une réponse rapide</a>
               <a class="text-link" href="tel:+33616294059"><span><svg><use href="#i-phone" /></svg></span><b>Urgence transport ?</b><small>06 16 29 40 59</small></a>
             </div>
             <div class="hero-proof hero-reveal delay-5" aria-label="Nos garanties">
-              <span><svg><use href="#i-check" /></svg>Interlocuteur direct</span>
-              <span><svg><use href="#i-check" /></svg>Suivi de mission</span>
+              <span><svg><use href="#i-check" /></svg>Suivi en temps réel</span>
+              <span><svg><use href="#i-check" /></svg>e-CMR numérique</span>
               <span><svg><use href="#i-check" /></svg>Preuve de livraison</span>
             </div>
           </div>
@@ -112,11 +112,11 @@
             <ol>
               <li class="is-active"><span>01</span><div><b>Réception de votre demande</b><small>Départ · arrivée · contrainte horaire</small></div><i>IMMÉDIAT</i></li>
               <li><span>02</span><div><b>Véhicule et conducteur dédiés</b><small>Une organisation adaptée à la mission</small></div><i>VALIDÉ</i></li>
-              <li><span>03</span><div><b>Suivi jusqu’à la livraison</b><small>Information claire et confirmation finale</small></div><i>SUIVI</i></li>
+              <li><span>03</span><div><b>Suivi &amp; e-CMR</b><small>Statuts, signatures et preuve de livraison</small></div><i>TRACÉ</i></li>
             </ol>
             <div class="mission-foot">
               <svg><use href="#i-shield" /></svg>
-              <p><b>Une chaîne de décision courte.</b><span>Vous savez qui appeler, à chaque étape.</span></p>
+              <p><b>Une mission tracée de bout en bout.</b><span>Chaque étape utile reste rattachée au transport.</span></p>
             </div>
           </aside>
         </div>
@@ -131,9 +131,9 @@
       <section class="trust-panel" aria-label="Ludhim en bref">
         <div class="shell trust-grid">
           <article><strong>24/7</strong><p>Disponibilité opérationnelle</p></article>
-          <article><strong>Direct</strong><p>Sans rupture de charge</p></article>
-          <article><strong>Grand Est</strong><p>Position stratégique</p></article>
-          <article><strong>Europe</strong><p>Missions transfrontalières</p></article>
+          <article><strong>Temps réel</strong><p>Suivi de l’avancement</p></article>
+          <article><strong>e-CMR</strong><p>Signatures horodatées</p></article>
+          <article><strong>Europe</strong><p>France &amp; international</p></article>
         </div>
       </section>
 
@@ -145,14 +145,14 @@
             <h2>La réactivité n’est pas une promesse.<br /><em>C’est une organisation.</em></h2>
           </div>
           <div class="statement-copy" data-reveal>
-            <p>Quand un quai attend, qu’une ligne de production dépend d’une pièce ou qu’un client exige une livraison précise, chaque minute compte. Ludhim mobilise une chaîne courte : un interlocuteur, une décision, une mission suivie.</p>
+            <p>Quand un quai attend, qu’une ligne de production dépend d’une pièce ou qu’un client exige une livraison précise, chaque minute compte. Ludhim mobilise une chaîne courte : un interlocuteur, une décision, une mission suivie et documentée jusqu’à sa clôture.</p>
             <a class="inline-link" href="#methode">Voir notre protocole</a>
           </div>
         </div>
         <div class="shell value-grid" data-reveal>
           <article><span><svg><use href="#i-zap" /></svg></span><h3>Décider vite</h3><p>Votre besoin est qualifié rapidement, sans vous faire perdre du temps entre plusieurs services.</p></article>
           <article><span><svg><use href="#i-route" /></svg></span><h3>Rouler direct</h3><p>Une course dédiée, organisée autour de votre marchandise et de votre échéance.</p></article>
-          <article><span><svg><use href="#i-package" /></svg></span><h3>Confirmer clairement</h3><p>La mission reste suivie jusqu’à la remise et à la preuve de bonne livraison.</p></article>
+          <article><span><svg><use href="#i-package" /></svg></span><h3>Prouver clairement</h3><p>Statuts, photos, signatures et e-CMR sont rattachés à la mission jusqu’à la preuve de livraison.</p></article>
         </div>
       </section>
 
@@ -167,7 +167,7 @@
             <article class="service-card featured" data-tilt data-reveal>
               <div class="service-top"><span>01</span><svg><use href="#i-zap" /></svg></div>
               <h3>Transport express</h3><p>Prise en charge rapide de vos expéditions urgentes, sensibles ou contraintes par un horaire précis.</p>
-              <ul><li>Départ prioritaire</li><li>Trajet direct</li><li>Information en cours de mission</li></ul>
+              <ul><li>Départ prioritaire</li><li>Trajet direct</li><li>Suivi de mission en temps réel</li></ul>
               <a href="#devis" data-service-choice="Transport express">Organiser un express</a>
             </article>
             <article class="service-card" data-tilt data-reveal>
@@ -179,9 +179,50 @@
             <article class="service-card" data-tilt data-reveal>
               <div class="service-top"><span>03</span><svg><use href="#i-truck" /></svg></div>
               <h3>Renfort &amp; sous-traitance</h3><p>Un appui fiable pour absorber un pic d’activité, sécuriser une tournée ou maintenir votre qualité de service.</p>
-              <ul><li>Besoin ponctuel ou régulier</li><li>Consignes respectées</li><li>Retour d’information</li></ul>
+              <ul><li>Besoin ponctuel ou régulier</li><li>Consignes respectées</li><li>Preuves et e-CMR disponibles</li></ul>
               <a href="#devis" data-service-choice="Renfort / sous-traitance">Parler à l’exploitation</a>
             </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="digital section-pad" id="suivi" aria-labelledby="digital-title">
+        <div class="shell digital-heading" data-reveal>
+          <div class="section-index"><span>03</span><p>Pilotage digital</p></div>
+          <div><p class="kicker">Le transport ne s’arrête pas au volant</p><h2 id="digital-title">Une mission visible.<br /><em>Une preuve à chaque étape.</em></h2></div>
+          <p>Ludhim associe l’exécution terrain à un suivi digital conçu pour savoir où en est la mission et retrouver rapidement les éléments qui prouvent sa bonne exécution.</p>
+        </div>
+
+        <div class="shell digital-grid">
+          <div class="digital-features" data-reveal>
+            <article><span><svg><use href="#i-live" /></svg></span><div><h3>Suivi en temps réel</h3><p>Prise en charge, chargement, départ, livraison et clôture : l’avancement de la mission est suivi au fil de son exécution.</p></div></article>
+            <article><span><svg><use href="#i-file-sign" /></svg></span><div><h3>e-CMR numérique</h3><p>Signature expéditeur puis destinataire, nom du signataire et horodatage regroupés sur le document de transport.</p></div></article>
+            <article><span><svg><use href="#i-camera" /></svg></span><div><h3>Photos de mission</h3><p>Chargement et déchargement peuvent être documentés directement dans la course pour conserver une trace terrain.</p></div></article>
+            <article><span><svg><use href="#i-mobile" /></svg></span><div><h3>Preuve de livraison</h3><p>Les éléments utiles restent centralisés autour de la mission pour confirmer plus vite qu’elle a bien été exécutée.</p></div></article>
+          </div>
+
+          <div class="mission-live" data-reveal aria-label="Exemple de suivi digital d’une mission Ludhim">
+            <div class="live-topbar"><span><i></i>MISSION EN COURS</span><small>LUDHIM LIVE</small></div>
+            <div class="live-body">
+              <div class="live-title"><div><small>MISSION LUD-2841</small><strong>Metz → Sochaux</strong></div><span>En livraison</span></div>
+              <div class="live-route">
+                <div class="live-city"><svg><use href="#i-pin" /></svg><p><small>CHARGEMENT</small><strong>Metz</strong><span>12:42 · confirmé</span></p></div>
+                <div class="live-line"><b></b><i><svg><use href="#i-truck" /></svg></i></div>
+                <div class="live-city end"><svg><use href="#i-route" /></svg><p><small>LIVRAISON</small><strong>Sochaux</strong><span>Prévue 15:30</span></p></div>
+              </div>
+              <div class="live-steps">
+                <div class="done"><svg><use href="#i-check" /></svg><p><strong>Prise en charge</strong><span>12:27</span></p></div>
+                <div class="done"><svg><use href="#i-check" /></svg><p><strong>Chargement validé</strong><span>12:42</span></p></div>
+                <div class="current"><svg><use href="#i-live" /></svg><p><strong>Mission en cours</strong><span>Mise à jour en temps réel</span></p></div>
+                <div><svg><use href="#i-package" /></svg><p><strong>Livraison</strong><span>À venir</span></p></div>
+              </div>
+              <div class="ecmr-card">
+                <span><svg><use href="#i-file-sign" /></svg></span>
+                <div><small>DOCUMENT NUMÉRIQUE</small><strong>e-CMR</strong><p>Expéditeur signé · Destinataire à signer</p></div>
+                <b>HORODATÉ</b>
+              </div>
+              <div class="live-proof"><span><svg><use href="#i-camera" /></svg>Photos mission</span><span><svg><use href="#i-shield" /></svg>Preuves centralisées</span></div>
+            </div>
           </div>
         </div>
       </section>
@@ -190,7 +231,7 @@
         <div class="fleet-lines" aria-hidden="true"></div>
         <div class="shell fleet-grid">
           <div class="fleet-copy" data-reveal>
-            <div class="section-index light"><span>03</span><p>Capacité terrain</p></div>
+            <div class="section-index light"><span>04</span><p>Capacité terrain</p></div>
             <p class="kicker light">Le bon format pour la bonne mission</p>
             <h2 id="fleet-title">Une flotte agile.<br /><em>Prête à partir.</em></h2>
             <p>Du pli urgent à la marchandise volumineuse, le véhicule est sélectionné selon votre chargement, la distance et les conditions d’accès.</p>
@@ -224,7 +265,7 @@
 
       <section class="coverage section-pad" id="couverture" aria-labelledby="coverage-title">
         <div class="shell coverage-heading" data-reveal>
-          <div class="section-index"><span>04</span><p>Rayon d’action</p></div>
+          <div class="section-index"><span>05</span><p>Rayon d’action</p></div>
           <div><p class="kicker">Au départ du Grand Est</p><h2 id="coverage-title">Une base en Moselle.<br /><em>L’Europe à portée de route.</em></h2></div>
           <p>Choisissez une destination, explorez le trajet et transférez votre simulation dans la demande de transport.</p>
         </div>
@@ -275,15 +316,15 @@
       <section class="method section-pad" id="methode" aria-labelledby="method-title">
         <div class="shell">
           <div class="section-heading method-heading" data-reveal>
-            <div class="section-index"><span>05</span><p>Le protocole</p></div>
-            <div><p class="kicker">Une mission lisible de bout en bout</p><h2 id="method-title">Un seul interlocuteur.<br />Zéro zone grise.</h2></div>
-            <p>Des informations utiles au bon moment, sans couche inutile entre votre besoin et le terrain.</p>
+            <div class="section-index"><span>06</span><p>Le protocole</p></div>
+            <div><p class="kicker">Une mission lisible de bout en bout</p><h2 id="method-title">Du devis à l’e-CMR.<br />Zéro zone grise.</h2></div>
+            <p>Une même logique de suivi relie votre demande, l’exécution terrain et la preuve de livraison.</p>
           </div>
           <div class="timeline" data-timeline data-reveal>
             <article><span>01</span><div class="timeline-icon"><svg><use href="#i-phone" /></svg></div><h3>Vous nous briefez</h3><p>Départ, destination, horaire, volume et contraintes de livraison.</p></article>
             <article><span>02</span><div class="timeline-icon"><svg><use href="#i-check" /></svg></div><h3>Nous confirmons</h3><p>Organisation, véhicule, délai et tarif sont posés clairement.</p></article>
-            <article><span>03</span><div class="timeline-icon"><svg><use href="#i-route" /></svg></div><h3>Nous exécutons</h3><p>Enlèvement puis trajet dédié, avec suivi de la mission.</p></article>
-            <article><span>04</span><div class="timeline-icon"><svg><use href="#i-package" /></svg></div><h3>Nous clôturons</h3><p>Remise au destinataire et confirmation de bonne livraison.</p></article>
+            <article><span>03</span><div class="timeline-icon"><svg><use href="#i-live" /></svg></div><h3>Nous suivons</h3><p>L’avancement de la mission est tracé pendant son exécution.</p></article>
+            <article><span>04</span><div class="timeline-icon"><svg><use href="#i-file-sign" /></svg></div><h3>Nous clôturons</h3><p>Livraison, signature et e-CMR horodaté finalisent la mission.</p></article>
           </div>
         </div>
       </section>
@@ -291,7 +332,7 @@
       <section class="faq section-pad" id="faq" aria-labelledby="faq-title">
         <div class="shell faq-grid">
           <div class="faq-heading" data-reveal>
-            <div class="section-index"><span>06</span><p>Questions terrain</p></div>
+            <div class="section-index"><span>07</span><p>Questions terrain</p></div>
             <p class="kicker">Avant de nous confier la route</p>
             <h2 id="faq-title">Les réponses utiles.<br /><em>Sans détour.</em></h2>
             <p>Un besoin atypique&nbsp;? Notre exploitation valide avec vous les contraintes réelles avant le départ.</p>
@@ -303,12 +344,16 @@
               <p>Oui. Une permanence est assurée 24h/24 et 7j/7 pour qualifier votre demande et confirmer la disponibilité adaptée à la mission.</p>
             </details>
             <details>
-              <summary>Quels documents sont transmis après livraison&nbsp;?<span></span></summary>
-              <p>Selon la mission, nous transmettons la confirmation de livraison, la preuve de livraison ou le bon signé disponible.</p>
+              <summary>Quels documents sont disponibles après livraison&nbsp;?<span></span></summary>
+              <p>Selon la mission, les preuves de livraison, photos utiles et e-CMR signé permettent de conserver une trace claire de l’exécution.</p>
             </details>
             <details>
               <summary>Travaillez-vous avec les transporteurs et commissionnaires&nbsp;?<span></span></summary>
               <p>Oui. Ludhim peut intervenir en renfort ponctuel ou régulier, dans le respect de vos consignes d’exploitation et de communication.</p>
+            </details>
+            <details>
+              <summary>Comment fonctionne le suivi en temps réel&nbsp;?<span></span></summary>
+              <p>La mission est mise à jour à ses étapes clés : prise en charge, chargement, départ, livraison et clôture. Cela permet de suivre son avancement sans attendre la fin de la course.</p>
             </details>
             <details>
               <summary>Comment choisir le bon véhicule&nbsp;?<span></span></summary>
@@ -355,8 +400,8 @@
     <footer class="footer">
       <div class="shell footer-main">
         <div>
-          <a class="brand footer-brand" href="#accueil"><span class="brand-mark"><b>L</b><i></i><b>T</b></span><span class="brand-name"><strong>LUDHIM</strong><small>TRANSPORT &amp; LOGISTIQUE</small></span></a>
-          <p>Transport express, dédié et urgent depuis le Grand Est vers la France et l’Europe.</p>
+          <a class="brand footer-brand footer-brand-official" href="#accueil"><img src="./logo-ludhim.svg" alt="Ludhim Transport et Logistique" /></a>
+          <p>Transport express et dédié avec suivi de mission, e-CMR et preuves de livraison depuis le Grand Est vers la France et l’Europe.</p>
         </div>
         <div><h3>Navigation</h3><a href="#expertise">Notre expertise</a><a href="#services">Nos services</a><a href="#flotte">Notre flotte</a><a href="#couverture">Zone d’intervention</a><a href="#faq">Questions fréquentes</a></div>
         <div><h3>Contact</h3><a href="tel:+33616294059">06 16 29 40 59</a><a href="mailto:contact@ludhim.fr">contact@ludhim.fr</a><span>Serémange-Erzange · Grand Est</span></div>
