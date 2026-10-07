@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1254 1254" role="img" aria-labelledby="title desc">
+<title id="title">Ludhim Transport et Logistique</title>
+<desc id="desc">Logo Ludhim avec monogramme vert, route anthracite et feuille.</desc>
+<rect width="1254" height="1254" fill="#ffffff"/>
+<g transform="translate(0 5)">
+  <path d="M414 322c0-55 45-100 100-100h101v346c-72 24-139 58-201 104V322z" fill="#075b3f"/>
+  <path d="M413 760c14-78 58-138 125-183 82-55 184-76 344-38-129 23-232 70-305 141-28 27-49 54-61 80H413z" fill="#202b31"/>
+  <path d="M563 760c21-65 65-113 131-150 48-27 105-48 174-61-63 30-116 67-156 111-26 29-44 62-53 100H563z" fill="#202b31"/>
+  <path d="M661 760c6-62 52-112 114-112h178c-20 55-67 112-139 112H661z" fill="#075b3f"/>
+  <path d="M777 541c-8-76 26-126 82-153 38-18 65-22 87-36-4 69-26 126-70 157-27 19-60 29-99 32z" fill="#4d9438"/>
+  <path d="M798 530c23-46 55-78 98-96-35 22-64 54-85 96h-13z" fill="#ffffff"/>
+</g>
+<text x="627" y="985" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="170" font-weight="900" letter-spacing="4" fill="#202b31">LUDHIM</text>
+<text x="627" y="1068" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="51" font-weight="400" letter-spacing="18" fill="#202b31">TRANSPORT ET LOGISTIQUE</text>
+</svg>
