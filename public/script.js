@@ -251,12 +251,11 @@
       if (type === "destination") {
         return window.L.divIcon({ className: "destination-marker", html: '<div class="destination-pin"></div>', iconSize: [24, 30], iconAnchor: [12, 24] });
       }
-      const extraClass = index === 0 ? "is-primary" : "is-secondary";
       return window.L.divIcon({
-        className: `vehicle-marker ${extraClass}`,
+        className: "vehicle-marker is-primary",
         html: '<div class="map-van"><span class="map-van-body"></span><span class="map-van-cab"></span></div>',
-        iconSize: [37, 24],
-        iconAnchor: [18, 12],
+        iconSize: [39, 25],
+        iconAnchor: [19, 12],
       });
     };
 
@@ -282,10 +281,7 @@
       routeShadow?.setLatLngs(routePoints);
       routeLine?.setLatLngs(routePoints);
       destinationMarker?.setLatLng(destination.coordinates).setTooltipContent(destination.name);
-      vehicleMarkers.forEach((marker, index) => {
-        const pointIndex = Math.floor((index / vehicleMarkers.length) * (routePoints.length - 1));
-        marker.setLatLng(routePoints[pointIndex]);
-      });
+      vehicleMarkers[0]?.setLatLng(routePoints[0]);
       animationStart = performance.now();
       const bounds = window.L.latLngBounds(routePoints);
       map.flyToBounds(bounds.pad(0.24), { paddingTopLeft: [40, 95], paddingBottomRight: [40, 60], duration: reduceMotion ? 0 : 1.1, maxZoom: 7 });
@@ -296,18 +292,18 @@
       if (animationPaused || document.hidden || !mapReady || routePoints.length < 2) return;
       const duration = Math.min(24000, Math.max(9000, selectedDistance * 18));
       const elapsed = (time - animationStart) / duration;
-      const offsets = [0, 0.36, 0.71];
-      vehicleMarkers.forEach((marker, index) => {
-        const progress = (elapsed + offsets[index]) % 1;
-        const pointIndex = Math.min(routePoints.length - 2, Math.floor(progress * (routePoints.length - 1)));
-        const current = routePoints[pointIndex];
-        const next = routePoints[pointIndex + 1];
-        marker.setLatLng(current);
+      const progress = elapsed % 1;
+      const pointIndex = Math.min(routePoints.length - 2, Math.floor(progress * (routePoints.length - 1)));
+      const current = routePoints[pointIndex];
+      const next = routePoints[pointIndex + 1];
+      const marker = vehicleMarkers[0];
+      marker?.setLatLng(current);
+      if (marker) {
         const currentPixel = map.latLngToLayerPoint(current);
         const nextPixel = map.latLngToLayerPoint(next);
         const angle = Math.atan2(nextPixel.y - currentPixel.y, nextPixel.x - currentPixel.x) * (180 / Math.PI);
         marker.getElement()?.querySelector(".map-van")?.style.setProperty("--vehicle-angle", `${angle}deg`);
-      });
+      }
     };
 
     const initializeMap = () => {
@@ -337,41 +333,21 @@
       tiles.addTo(map);
       window.setTimeout(() => loading?.classList.add("is-hidden"), 4500);
       window.L.control.scale({ imperial: false, position: "bottomright" }).addTo(map);
-      ["luxembourg", "brussels", "frankfurt", "milan", "warsaw"].forEach((key) => {
-        window.L.polyline(buildCurve(base.coordinates, destinations[key].coordinates, 70), {
-          color: "#79a6b8",
-          dashArray: "3 11",
-          interactive: false,
-          opacity: 0.2,
-          weight: 1.5,
-        }).addTo(map);
-      });
-      Object.entries(destinations).forEach(([key, destination]) => {
-        window.L.circleMarker(destination.coordinates, {
-          color: "#d4edf5",
-          fillColor: "#25c8ff",
-          fillOpacity: 0.7,
-          radius: 4,
-          weight: 1,
-        })
-          .addTo(map)
-          .bindTooltip(destination.name, { direction: "top", offset: [0, -5] })
-          .on("click", () => updatePlanner(key));
-      });
+      // Une seule mission est visualisée à la fois pour garder une lecture claire et professionnelle.
       window.L.marker(base.coordinates, { icon: markerIcon("base"), zIndexOffset: 900 })
         .addTo(map)
         .bindTooltip("Base Ludhim · Moselle", { direction: "top", offset: [0, -18] });
       destinationMarker = window.L.marker(base.coordinates, { icon: markerIcon("destination"), zIndexOffset: 800 })
         .addTo(map)
         .bindTooltip("Destination", { direction: "top", offset: [0, -20] });
-      routeShadow = window.L.polyline([], { color: "#06101d", opacity: 0.72, weight: 10, lineCap: "round", interactive: false }).addTo(map);
-      routeLine = window.L.polyline([], { className: "active-route-path", color: "#25c8ff", dashArray: "10 12", opacity: 0.96, weight: 4, lineCap: "round", interactive: false }).addTo(map);
-      vehicleMarkers = [0, 1, 2].map((index) => window.L.marker(base.coordinates, {
-        icon: markerIcon("vehicle", index),
+      routeShadow = window.L.polyline([], { color: "#ffffff", opacity: 0.9, weight: 8, lineCap: "round", interactive: false }).addTo(map);
+      routeLine = window.L.polyline([], { className: "active-route-path", color: "#075b3f", opacity: 1, weight: 4.5, lineCap: "round", interactive: false }).addTo(map);
+      vehicleMarkers = [window.L.marker(base.coordinates, {
+        icon: markerIcon("vehicle"),
         interactive: false,
         keyboard: false,
-        zIndexOffset: 1000 + index,
-      }).addTo(map));
+        zIndexOffset: 1000,
+      }).addTo(map)];
       mapReady = true;
       drawRoute(destinations[selectedKey]);
       if (reduceMotion && toggleButton) {
@@ -389,7 +365,7 @@
     });
     toggleButton?.addEventListener("click", () => {
       animationPaused = !animationPaused;
-      toggleButton.textContent = animationPaused ? "Reprendre les véhicules" : "Mettre en pause";
+      toggleButton.textContent = animationPaused ? "Reprendre le véhicule" : "Mettre en pause";
       toggleButton.setAttribute("aria-pressed", String(animationPaused));
       if (!animationPaused) animationStart = performance.now();
     });
