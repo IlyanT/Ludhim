@@ -5,17 +5,23 @@ import type { CSSProperties } from "react";
 import roadImage from "./assets/transport-hero.png";
 import vanImage from "./assets/transport-van-cutout.png";
 import {
+  Activity,
   ArrowRight,
   BadgeCheck,
+  Camera,
   CheckCircle2,
   Clock3,
+  FileSignature,
   Globe2,
   Mail,
+  MapPin,
   MapPinned,
+  Navigation,
   PackageCheck,
   Phone,
   Route,
   ShieldCheck,
+  Smartphone,
   Truck,
   Users,
   Zap,
@@ -30,17 +36,40 @@ const services = [
   {
     icon: Route,
     title: "Course dédiée",
-    text: "Acheminement direct organisé exclusivement autour de votre marchandise et de votre échéance.",
+    text: "Un véhicule et un trajet organisés exclusivement autour de votre marchandise et de votre échéance.",
   },
   {
     icon: Users,
     title: "Sous-traitance transport",
-    text: "Accompagnement ponctuel ou régulier pour assurer la continuité de vos opérations de livraison.",
+    text: "Un renfort fiable, ponctuel ou régulier, pour absorber vos flux et assurer la continuité de vos livraisons.",
   },
   {
     icon: Globe2,
     title: "France & Europe",
-    text: "Organisation de missions régionales, nationales et européennes selon votre destination.",
+    text: "Missions régionales, nationales et européennes avec une organisation centralisée depuis le Grand Est.",
+  },
+];
+
+const digitalFeatures = [
+  {
+    icon: Activity,
+    title: "Suivi en temps réel",
+    text: "L’avancement de la mission est suivi à chaque étape : prise en charge, chargement, départ, livraison et clôture.",
+  },
+  {
+    icon: FileSignature,
+    title: "e-CMR signé",
+    text: "CMR numérique avec signatures expéditeur et destinataire, nom du signataire et horodatage.",
+  },
+  {
+    icon: Camera,
+    title: "Preuves terrain",
+    text: "Photos de chargement et de déchargement rattachées directement à la mission pour une traçabilité claire.",
+  },
+  {
+    icon: Smartphone,
+    title: "Preuve de livraison",
+    text: "Documents et validation de livraison centralisés pour retrouver rapidement la preuve d’exécution.",
   },
 ];
 
@@ -91,19 +120,17 @@ export default function App() {
 
         <div className="nav-shell">
           <div className="section-shell nav-inner">
-            <a className="brand" href="#accueil" aria-label="Ludhim — retour en haut">
-              <span className="brand-box">LT</span>
-              <span className="brand-divider" aria-hidden="true" />
-              <span className="brand-copy"><strong>LUDHIM</strong><small>Transport &amp; Logistiques</small></span>
+            <a className="brand brand-image-link" href="#accueil" aria-label="Ludhim — retour en haut">
+              <img className="site-brand-logo" src="/logo-ludhim.svg" alt="Ludhim Transport et Logistique" />
             </a>
             <nav aria-label="Navigation principale">
               <a href="#accueil">Accueil</a>
               <a href="#services">Services</a>
+              <a href="#suivi">Suivi &amp; e-CMR</a>
               <a href="#interventions">Interventions</a>
-              <a href="#engagements">Engagements</a>
               <a href="#contact">Contact</a>
             </nav>
-            <a className="nav-cta" href="#contact">Devis gratuit <ArrowRight size={17} aria-hidden="true" /></a>
+            <a className="nav-cta" href="#contact">Demander un devis <ArrowRight size={17} aria-hidden="true" /></a>
           </div>
         </div>
       </header>
@@ -111,20 +138,20 @@ export default function App() {
       <section className="hero" id="accueil">
         <div className="hero-grid section-shell">
           <div className="hero-copy">
-            <p className="hero-pill hero-enter delay-1"><Truck size={17} aria-hidden="true" /> Votre partenaire transport</p>
-            <h1 className="hero-enter delay-2">Transport express<br /><span>en France &amp; Europe</span></h1>
+            <p className="hero-pill hero-enter delay-1"><Truck size={17} aria-hidden="true" /> Transport express piloté de bout en bout</p>
+            <h1 className="hero-enter delay-2">Vos transports.<br /><span>Suivis jusqu’à la preuve de livraison.</span></h1>
             <p className="hero-text hero-enter delay-3">
-              Courses urgentes, livraisons dédiées et sous-traitance pour les professionnels.
-              Une organisation simple, réactive et suivie jusqu’à la livraison.
+              Courses urgentes, livraisons dédiées et sous-traitance en France et en Europe.
+              Ludhim associe réactivité terrain, suivi de mission en temps réel et e-CMR numérique signé.
             </p>
             <div className="hero-actions hero-enter delay-4">
               <a className="button button-primary" href="#contact">Demander un devis <ArrowRight size={18} aria-hidden="true" /></a>
-              <a className="button button-secondary" href="#services">Nos services</a>
+              <a className="button button-secondary" href="#suivi">Découvrir le suivi digital</a>
             </div>
             <div className="hero-proof hero-enter delay-5">
-              <span><CheckCircle2 aria-hidden="true" /> Réponse rapide</span>
-              <span><CheckCircle2 aria-hidden="true" /> Organisation dédiée</span>
-              <span><CheckCircle2 aria-hidden="true" /> Livraison confirmée</span>
+              <span><CheckCircle2 aria-hidden="true" /> Suivi de mission</span>
+              <span><CheckCircle2 aria-hidden="true" /> e-CMR signé</span>
+              <span><CheckCircle2 aria-hidden="true" /> Preuves de livraison</span>
             </div>
           </div>
 
@@ -133,9 +160,9 @@ export default function App() {
             <div className="dot-pattern" />
             <div className="route-stroke" />
             <img src={vanImage} alt="" />
-            <div className="floating-card">
-              <Clock3 size={25} />
-              <div><strong>24h/24 · 7j/7</strong><span>À votre écoute</span></div>
+            <div className="floating-card live-floating-card">
+              <span className="live-dot" />
+              <div><strong>Mission en cours</strong><span>Suivi actif · prochaine étape : livraison</span></div>
             </div>
           </div>
         </div>
@@ -144,8 +171,8 @@ export default function App() {
       <section className="trust-strip" aria-label="Nos principales prestations">
         <div className="section-shell">
           <span>Transport express</span><i />
-          <span>Course dédiée</span><i />
-          <span>Sous-traitance</span><i />
+          <span>Suivi en temps réel</span><i />
+          <span>e-CMR numérique</span><i />
           <span>France &amp; Europe</span>
         </div>
       </section>
@@ -154,19 +181,20 @@ export default function App() {
         <div className="about-visual">
           <img src={roadImage} alt="Transport express sur un axe européen" />
           <div className="about-accent" aria-hidden="true" />
-          <div className="about-label"><BadgeCheck size={22} aria-hidden="true" /><span><strong>Service professionnel</strong>Chaque mission est suivie</span></div>
+          <div className="about-label"><BadgeCheck size={22} aria-hidden="true" /><span><strong>Transport + traçabilité</strong>Une mission suivie jusqu’à sa clôture</span></div>
         </div>
         <div className="about-copy">
-          <p className="section-kicker">À propos de nous</p>
-          <h2 id="about-title">Plus qu’un transport,<br />un partenaire fiable.</h2>
+          <p className="section-kicker">Ludhim Transport</p>
+          <h2 id="about-title">Du terrain au digital,<br />une seule chaîne de suivi.</h2>
           <p>
-            Depuis le Grand Est, Ludhim Transport &amp; Logistiques accompagne les entreprises dans
-            l’organisation de leurs livraisons urgentes, ponctuelles ou régulières en France et en Europe.
+            Depuis le Grand Est, Ludhim Transport &amp; Logistique accompagne les professionnels
+            pour leurs transports urgents, ponctuels ou réguliers en France et en Europe.
+            Notre organisation digitale permet de conserver les informations utiles de la mission jusqu’à la preuve de livraison.
           </p>
           <ul>
-            <li><ShieldCheck aria-hidden="true" /><span><strong>Fiabilité</strong>Une organisation précise et des informations claires.</span></li>
-            <li><Clock3 aria-hidden="true" /><span><strong>Réactivité</strong>Une réponse rapide lorsque chaque minute compte.</span></li>
-            <li><PackageCheck aria-hidden="true" /><span><strong>Traçabilité</strong>Un suivi jusqu’à la confirmation de livraison.</span></li>
+            <li><ShieldCheck aria-hidden="true" /><span><strong>Fiabilité</strong>Une organisation précise et des informations centralisées.</span></li>
+            <li><Clock3 aria-hidden="true" /><span><strong>Réactivité</strong>Une prise en charge rapide lorsque chaque minute compte.</span></li>
+            <li><PackageCheck aria-hidden="true" /><span><strong>Traçabilité</strong>Statuts, signatures et preuves rattachés à chaque course.</span></li>
           </ul>
         </div>
       </section>
@@ -176,9 +204,9 @@ export default function App() {
           <div className="section-heading" data-reveal>
             <div>
               <p className="section-kicker">Nos services</p>
-              <h2 id="services-title">Des solutions pensées<br />pour vos impératifs.</h2>
+              <h2 id="services-title">Une solution transport<br />adaptée à vos contraintes.</h2>
             </div>
-            <p>Chaque mission est organisée selon son urgence, sa destination et les contraintes de livraison.</p>
+            <p>Urgence, destination, horaires, multi-chargements ou besoin récurrent : chaque mission est organisée selon votre exploitation.</p>
           </div>
           <div className="service-grid" data-reveal>
             {services.map(({ icon: Icon, title, text }, index) => (
@@ -193,17 +221,95 @@ export default function App() {
         </div>
       </section>
 
+      <section className="digital-tracking" id="suivi" aria-labelledby="digital-title">
+        <div className="section-shell digital-grid">
+          <div className="digital-copy" data-reveal>
+            <p className="section-kicker">Suivi digital Ludhim</p>
+            <h2 id="digital-title">Votre transport reste visible<br />à chaque étape.</h2>
+            <p className="digital-intro">
+              Le transport ne s’arrête plus à un simple « chargé / livré ». Chaque mission est structurée,
+              suivie et documentée pour réduire les échanges inutiles et accélérer la confirmation de livraison.
+            </p>
+
+            <div className="digital-feature-grid">
+              {digitalFeatures.map(({icon:Icon,title,text})=>(
+                <article className="digital-feature" key={title}>
+                  <span className="digital-feature-icon"><Icon aria-hidden="true" /></span>
+                  <div><h3>{title}</h3><p>{text}</p></div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="tracking-demo" data-reveal aria-label="Exemple d’un suivi de mission Ludhim">
+            <div className="tracking-browser">
+              <div className="tracking-browser-bar">
+                <div className="browser-dots" aria-hidden="true"><i/><i/><i/></div>
+                <span>LUDHIM · SUIVI MISSION</span>
+                <small>EN DIRECT</small>
+              </div>
+
+              <div className="tracking-screen">
+                <div className="tracking-head">
+                  <div>
+                    <small>MISSION LUD-2841</small>
+                    <strong>Metz → Sochaux</strong>
+                  </div>
+                  <span className="status-live"><i/> En livraison</span>
+                </div>
+
+                <div className="tracking-route">
+                  <div className="tracking-location"><MapPin/><div><small>CHARGEMENT</small><strong>Metz</strong><span>12:42 · confirmé</span></div></div>
+                  <div className="tracking-road">
+                    <span className="tracking-road-fill"/>
+                    <span className="vehicle-dot"><Truck/></span>
+                  </div>
+                  <div className="tracking-location destination"><Navigation/><div><small>LIVRAISON</small><strong>Sochaux</strong><span>Prévue 15:30</span></div></div>
+                </div>
+
+                <div className="tracking-events">
+                  <div className="tracking-event done"><CheckCircle2/><div><strong>Prise en charge</strong><span>12:27</span></div></div>
+                  <div className="tracking-event done"><CheckCircle2/><div><strong>Chargement validé</strong><span>12:42</span></div></div>
+                  <div className="tracking-event current"><Activity/><div><strong>Mission en cours</strong><span>Mise à jour en temps réel</span></div></div>
+                  <div className="tracking-event"><PackageCheck/><div><strong>Livraison</strong><span>À venir</span></div></div>
+                </div>
+
+                <div className="ecmr-preview">
+                  <div className="ecmr-icon"><FileSignature/></div>
+                  <div className="ecmr-copy">
+                    <small>DOCUMENT NUMÉRIQUE</small>
+                    <strong>e-CMR</strong>
+                    <span>Expéditeur signé · Destinataire à signer</span>
+                  </div>
+                  <span className="ecmr-badge">Horodaté</span>
+                </div>
+
+                <div className="proof-row">
+                  <span><Camera/> Photos mission</span>
+                  <span><ShieldCheck/> Preuves centralisées</span>
+                </div>
+              </div>
+            </div>
+            <div className="tracking-caption">
+              <span><i/> Suivi opérationnel</span>
+              <p>Un aperçu illustratif du parcours digital d’une mission Ludhim.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="process section-shell" aria-labelledby="process-title">
         <div className="section-heading centered" data-reveal>
           <div>
-            <p className="section-kicker">Comment ça marche ?</p>
-            <h2 id="process-title">Votre transport en 3 étapes.</h2>
+            <p className="section-kicker">Une mission Ludhim</p>
+            <h2 id="process-title">Du devis à l’e-CMR signé.</h2>
           </div>
         </div>
-        <div className="process-grid" data-reveal>
-          <article><span>01</span><div className="process-icon"><Mail aria-hidden="true" /></div><h3>Votre demande</h3><p>Indiquez-nous le départ, la destination, le délai et les particularités de l’envoi.</p></article>
-          <article><span>02</span><div className="process-icon"><Route aria-hidden="true" /></div><h3>Notre proposition</h3><p>Nous confirmons rapidement l’organisation, le tarif et les conditions de prise en charge.</p></article>
-          <article><span>03</span><div className="process-icon"><PackageCheck aria-hidden="true" /></div><h3>La livraison</h3><p>La mission est suivie jusqu’à sa réalisation et à la confirmation de bonne livraison.</p></article>
+        <div className="process-grid process-grid-four" data-reveal>
+          <article><span>01</span><div className="process-icon"><Mail aria-hidden="true" /></div><h3>Votre demande</h3><p>Départ, destination, horaires, marchandise et contraintes de livraison.</p></article>
+          <article><span>02</span><div className="process-icon"><Truck aria-hidden="true" /></div><h3>Prise en charge</h3><p>Le chauffeur démarre la mission, valide le chargement et les éléments nécessaires.</p></article>
+          <article><span>03</span><div className="process-icon"><Activity aria-hidden="true" /></div><h3>Suivi en temps réel</h3><p>L’avancement est tracé pendant toute l’exécution de la course.</p></article>
+          <article><span>04</span><div className="process-icon"><FileSignature aria-hidden="true" /></div><h3>Livraison &amp; e-CMR</h3><p>Signature, horodatage et preuve de livraison clôturent la mission.</p></article>
         </div>
       </section>
 
@@ -213,12 +319,12 @@ export default function App() {
             <p className="section-kicker light">Zone d’intervention</p>
             <h2 id="coverage-title">Du Grand Est<br />vers toute l’Europe.</h2>
             <p>
-              Nous organisons vos transports au départ du Grand Est vers la France et l’ensemble
-              des destinations européennes.
+              Nous organisons vos transports au départ du Grand Est vers la France et les destinations européennes,
+              avec le même niveau de suivi du départ jusqu’à la livraison.
             </p>
             <div className="coverage-tags">
-              <span>Grand Est</span><span>France</span><span>Europe du Nord</span>
-              <span>Europe centrale</span><span>Europe du Sud</span><span>Europe de l’Est</span>
+              <span>Grand Est</span><span>France</span><span>Benelux</span>
+              <span>Allemagne</span><span>Europe du Sud</span><span>Europe de l’Est</span>
             </div>
           </div>
 
@@ -231,12 +337,12 @@ export default function App() {
             <svg viewBox="0 0 700 460" preserveAspectRatio="none" role="img" aria-label="Liaisons depuis le Grand Est vers la France et l’Europe">
               <defs>
                 <linearGradient id="routeGradient" x1="0" x2="1">
-                  <stop offset="0" stopColor="#f59e0b" />
-                  <stop offset="0.35" stopColor="#38bdf8" />
-                  <stop offset="1" stopColor="#7dd3fc" />
+                  <stop offset="0" stopColor="#4d9438" />
+                  <stop offset="0.4" stopColor="#79b55e" />
+                  <stop offset="1" stopColor="#c8e6bd" />
                 </linearGradient>
                 <marker id="routeArrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
-                  <path d="M0,0 L8,4 L0,8 Z" fill="#7dd3fc" />
+                  <path d="M0,0 L8,4 L0,8 Z" fill="#9fd38a" />
                 </marker>
               </defs>
               <ellipse className="map-zone" cx="357" cy="248" rx="278" ry="164" />
@@ -280,15 +386,15 @@ export default function App() {
         <div className="commitment-grid" data-reveal>
           <article><Clock3 aria-hidden="true" /><h3>Réactivité</h3><p>Une réponse rapide pour les besoins urgents comme pour les missions planifiées.</p></article>
           <article><ShieldCheck aria-hidden="true" /><h3>Fiabilité</h3><p>Des engagements clairs et une organisation adaptée aux contraintes annoncées.</p></article>
-          <article><PackageCheck aria-hidden="true" /><h3>Suivi</h3><p>Des informations utiles pendant la mission et une confirmation à la livraison.</p></article>
+          <article><FileSignature aria-hidden="true" /><h3>Traçabilité digitale</h3><p>Statuts de mission, preuves terrain et e-CMR rassemblés autour d’un même transport.</p></article>
         </div>
       </section>
 
       <section className="contact" id="contact" aria-labelledby="contact-title">
         <div className="section-shell contact-inner" data-reveal>
           <p className="section-kicker light">Un transport à organiser ?</p>
-          <h2 id="contact-title">Parlons de votre prochaine mission.</h2>
-          <p>Décrivez-nous votre besoin : nous vous répondrons rapidement avec une solution adaptée.</p>
+          <h2 id="contact-title">Confiez-nous votre prochaine mission.</h2>
+          <p>Décrivez-nous votre besoin : nous vous répondons rapidement avec une solution adaptée et un suivi clair de l’enlèvement à la livraison.</p>
           <div className="contact-options">
             <a href="tel:+33616294059"><span className="contact-icon"><Phone aria-hidden="true" /></span><span><small>Téléphone</small>+33 6 16 29 40 59</span></a>
             <a href="mailto:contact@ludhim.fr?subject=Demande%20de%20devis"><span className="contact-icon"><Mail aria-hidden="true" /></span><span><small>E-mail</small>contact@ludhim.fr</span></a>
@@ -299,10 +405,9 @@ export default function App() {
 
       <footer>
         <div className="section-shell footer-inner">
-          <div className="brand footer-brand">
-            <span className="brand-box">LT</span><span className="brand-divider" aria-hidden="true" />
-            <span className="brand-copy"><strong>LUDHIM</strong><small>Transport &amp; Logistiques</small></span>
-          </div>
+          <a className="footer-logo-link" href="#accueil" aria-label="Ludhim — retour en haut">
+            <img className="footer-logo" src="/logo-ludhim.svg" alt="Ludhim Transport et Logistique" />
+          </a>
           <p>Grand Est · France · Europe</p>
           <p>SIREN 991 699 646</p>
           <a href="#accueil">Retour en haut ↑</a>
