@@ -81,7 +81,7 @@ export default function App() {
         <div className="topbar">
           <div className="section-shell topbar-inner">
             <div className="topbar-links">
-              <a href="mailto:contact@ludhim.fr"><Mail size={15} aria-hidden="true" /> contact@ludhim.fr</a>
+              <a href="mailto:ludhimtransport@hotmail.com"><Mail size={15} aria-hidden="true" /> ludhimtransport@hotmail.com</a>
               <a href="tel:+33616294059"><Phone size={15} aria-hidden="true" /> +33 6 16 29 40 59</a>
               <span><MapPinned size={15} aria-hidden="true" /> Grand Est · France · Europe</span>
             </div>
@@ -291,9 +291,9 @@ export default function App() {
           <p>Décrivez-nous votre besoin : nous vous répondrons rapidement avec une solution adaptée.</p>
           <div className="contact-options">
             <a href="tel:+33616294059"><span className="contact-icon"><Phone aria-hidden="true" /></span><span><small>Téléphone</small>+33 6 16 29 40 59</span></a>
-            <a href="mailto:contact@ludhim.fr?subject=Demande%20de%20devis"><span className="contact-icon"><Mail aria-hidden="true" /></span><span><small>E-mail</small>contact@ludhim.fr</span></a>
+            <a href="mailto:ludhimtransport@hotmail.com?subject=Demande%20de%20devis"><span className="contact-icon"><Mail aria-hidden="true" /></span><span><small>E-mail</small>ludhimtransport@hotmail.com</span></a>
           </div>
-          <a className="button contact-button" href="mailto:contact@ludhim.fr?subject=Demande%20de%20devis">Demander un devis gratuit <ArrowRight size={18} aria-hidden="true" /></a>
+          <a className="button contact-button" href="mailto:ludhimtransport@hotmail.com?subject=Demande%20de%20devis">Demander un devis gratuit <ArrowRight size={18} aria-hidden="true" /></a>
         </div>
       </section>
 
