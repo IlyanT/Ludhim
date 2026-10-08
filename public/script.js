@@ -466,6 +466,6 @@
       note.classList.add("is-active");
       note.lastChild.textContent = " Votre demande est prête : ouverture de votre messagerie…";
     }
-    window.location.href = `mailto:contact@ludhim.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:ludhimtransport@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   });
 })();
