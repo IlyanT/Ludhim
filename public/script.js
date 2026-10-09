@@ -197,6 +197,7 @@
     const cityOutput = routeStudio.querySelector("[data-route-city]");
     const zoneOutput = routeStudio.querySelector("[data-route-zone]");
     const distanceOutput = routeStudio.querySelector("[data-route-distance]");
+    const hudDestination = routeStudio.querySelector("[data-map-hud-destination]");
     const loading = routeStudio.querySelector("[data-map-loading]");
     const toggleButton = routeStudio.querySelector("[data-map-toggle]");
     let selectedKey = select?.value || "paris";
@@ -206,7 +207,7 @@
     let routeLine;
     let destinationMarker;
     let routePoints = [];
-    let vehicleMarkers = [];
+    let vehicleMarker;
     let animationFrame = 0;
     let animationStart = 0;
     let animationPaused = reduceMotion;
@@ -268,6 +269,7 @@
       if (cityOutput) cityOutput.textContent = destination.name;
       if (zoneOutput) zoneOutput.textContent = destination.zone;
       if (distanceOutput) distanceOutput.textContent = `≈ ${selectedDistance.toLocaleString("fr-FR")} km`;
+      if (hudDestination) hudDestination.textContent = destination.name;
       quickButtons.forEach((button) => {
         const active = button.dataset.routeQuick === key;
         button.classList.toggle("is-active", active);
@@ -281,7 +283,7 @@
       routeShadow?.setLatLngs(routePoints);
       routeLine?.setLatLngs(routePoints);
       destinationMarker?.setLatLng(destination.coordinates).setTooltipContent(destination.name);
-      vehicleMarkers[0]?.setLatLng(routePoints[0]);
+      vehicleMarker?.setLatLng(routePoints[0]);
       animationStart = performance.now();
       const bounds = window.L.latLngBounds(routePoints);
       map.flyToBounds(bounds.pad(0.24), { paddingTopLeft: [40, 95], paddingBottomRight: [40, 60], duration: reduceMotion ? 0 : 1.1, maxZoom: 7 });
@@ -289,21 +291,24 @@
 
     const animateVehicles = (time) => {
       animationFrame = window.requestAnimationFrame(animateVehicles);
-      if (animationPaused || document.hidden || !mapReady || routePoints.length < 2) return;
+      if (animationPaused || document.hidden || !mapReady || routePoints.length < 2 || !vehicleMarker) return;
       const duration = Math.min(24000, Math.max(9000, selectedDistance * 18));
       const elapsed = (time - animationStart) / duration;
       const progress = elapsed % 1;
-      const pointIndex = Math.min(routePoints.length - 2, Math.floor(progress * (routePoints.length - 1)));
+      const scaled = progress * (routePoints.length - 1);
+      const pointIndex = Math.min(routePoints.length - 2, Math.floor(scaled));
+      const localProgress = scaled - pointIndex;
       const current = routePoints[pointIndex];
       const next = routePoints[pointIndex + 1];
-      const marker = vehicleMarkers[0];
-      marker?.setLatLng(current);
-      if (marker) {
-        const currentPixel = map.latLngToLayerPoint(current);
-        const nextPixel = map.latLngToLayerPoint(next);
-        const angle = Math.atan2(nextPixel.y - currentPixel.y, nextPixel.x - currentPixel.x) * (180 / Math.PI);
-        marker.getElement()?.querySelector(".map-van")?.style.setProperty("--vehicle-angle", `${angle}deg`);
-      }
+      const position = [
+        current[0] + (next[0] - current[0]) * localProgress,
+        current[1] + (next[1] - current[1]) * localProgress,
+      ];
+      vehicleMarker.setLatLng(position);
+      const currentPixel = map.latLngToLayerPoint(current);
+      const nextPixel = map.latLngToLayerPoint(next);
+      const angle = Math.atan2(nextPixel.y - currentPixel.y, nextPixel.x - currentPixel.x) * (180 / Math.PI);
+      vehicleMarker.getElement()?.querySelector(".map-van")?.style.setProperty("--vehicle-angle", `${angle}deg`);
     };
 
     const initializeMap = () => {
@@ -342,12 +347,12 @@
         .bindTooltip("Destination", { direction: "top", offset: [0, -20] });
       routeShadow = window.L.polyline([], { color: "#ffffff", opacity: 0.9, weight: 8, lineCap: "round", interactive: false }).addTo(map);
       routeLine = window.L.polyline([], { className: "active-route-path", color: "#075b3f", opacity: 1, weight: 4.5, lineCap: "round", interactive: false }).addTo(map);
-      vehicleMarkers = [window.L.marker(base.coordinates, {
+      vehicleMarker = window.L.marker(base.coordinates, {
         icon: markerIcon("vehicle"),
         interactive: false,
         keyboard: false,
         zIndexOffset: 1000,
-      }).addTo(map)];
+      }).addTo(map);
       mapReady = true;
       drawRoute(destinations[selectedKey]);
       if (reduceMotion && toggleButton) {
