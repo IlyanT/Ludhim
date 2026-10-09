@@ -212,6 +212,7 @@
     let animationStart = 0;
     let animationPaused = reduceMotion;
     let mapReady = false;
+    let routeRequestId = 0;
 
     const estimateDistance = (from, to) => {
       const earthRadius = 6371;
@@ -275,18 +276,47 @@
         button.classList.toggle("is-active", active);
         button.setAttribute("aria-pressed", String(active));
       });
-      if (mapReady) drawRoute(destination);
+      if (mapReady) void drawRoute(destination);
     };
 
-    const drawRoute = (destination) => {
-      routePoints = buildCurve(base.coordinates, destination.coordinates);
+    const drawRoute = async (destination) => {
+      const requestId = ++routeRequestId;
+      let points = buildCurve(base.coordinates, destination.coordinates);
+
+      try {
+        const [fromLat, fromLng] = base.coordinates;
+        const [toLat, toLng] = destination.coordinates;
+        const response = await fetch(
+          `https://router.project-osrm.org/route/v1/driving/${fromLng},${fromLat};${toLng},${toLat}?overview=full&geometries=geojson&steps=false`,
+          { headers: { Accept: "application/json" } },
+        );
+        if (response.ok) {
+          const payload = await response.json();
+          const route = payload?.routes?.[0];
+          if (route?.geometry?.coordinates?.length > 1) {
+            points = route.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
+            selectedDistance = Math.max(1, Math.round(route.distance / 1000));
+            if (distanceOutput) distanceOutput.textContent = `≈ ${selectedDistance.toLocaleString("fr-FR")} km`;
+          }
+        }
+      } catch {
+        // Fallback visuel conservé si le calcul routier public n'est pas disponible.
+      }
+
+      if (requestId !== routeRequestId || !mapReady) return;
+      routePoints = points;
       routeShadow?.setLatLngs(routePoints);
       routeLine?.setLatLngs(routePoints);
       destinationMarker?.setLatLng(destination.coordinates).setTooltipContent(destination.name);
       vehicleMarker?.setLatLng(routePoints[0]);
       animationStart = performance.now();
       const bounds = window.L.latLngBounds(routePoints);
-      map.flyToBounds(bounds.pad(0.24), { paddingTopLeft: [40, 95], paddingBottomRight: [40, 60], duration: reduceMotion ? 0 : 1.1, maxZoom: 7 });
+      map.flyToBounds(bounds.pad(0.18), {
+        paddingTopLeft: [56, 118],
+        paddingBottomRight: [48, 72],
+        duration: reduceMotion ? 0 : 1,
+        maxZoom: 7,
+      });
     };
 
     const animateVehicles = (time) => {
@@ -345,8 +375,8 @@
       destinationMarker = window.L.marker(base.coordinates, { icon: markerIcon("destination"), zIndexOffset: 800 })
         .addTo(map)
         .bindTooltip("Destination", { direction: "top", offset: [0, -20] });
-      routeShadow = window.L.polyline([], { color: "#ffffff", opacity: 0.9, weight: 8, lineCap: "round", interactive: false }).addTo(map);
-      routeLine = window.L.polyline([], { className: "active-route-path", color: "#075b3f", opacity: 1, weight: 4.5, lineCap: "round", interactive: false }).addTo(map);
+      routeShadow = window.L.polyline([], { color: "#d9e5dd", opacity: 1, weight: 9, lineCap: "round", interactive: false }).addTo(map);
+      routeLine = window.L.polyline([], { className: "active-route-path", color: "#075b3f", opacity: 1, weight: 5, lineCap: "round", interactive: false }).addTo(map);
       vehicleMarker = window.L.marker(base.coordinates, {
         icon: markerIcon("vehicle"),
         interactive: false,
@@ -354,7 +384,7 @@
         zIndexOffset: 1000,
       }).addTo(map);
       mapReady = true;
-      drawRoute(destinations[selectedKey]);
+      void drawRoute(destinations[selectedKey]);
       if (reduceMotion && toggleButton) {
         toggleButton.textContent = "Animation réduite";
         toggleButton.disabled = true;
