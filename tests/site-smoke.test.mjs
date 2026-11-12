@@ -49,11 +49,12 @@ test("site links and deployed assets resolve",()=>{
   assert.ok(ids.has(match[1]),"Broken navigation: #"+match[1]);
  }
  for(const p of ["public/studio-2026.css","public/studio-2026.js","public/assets/van-cutout.webp",
- "public/assets/hero-night.webp","public/assets/vendor/leaflet/leaflet.js","public/logo-ludhim.svg","public/CNAME"]){
+ "public/assets/hero-night.webp","public/assets/vendor/leaflet/leaflet.js","public/logo-wordmark.svg","public/CNAME"]){
   assert.ok(existsSync(new URL("../"+p,import.meta.url)),"Missing: "+p);
  }
  assert.match(html,/href="\.\/studio-2026.css"/);
  assert.match(html,/src="\.\/studio-2026.js"/);
+ assert.equal((html.match(/src="\.\/logo-wordmark\.svg"/g)||[]).length,2,"Use new wordmark in header and footer");
  assert.doesNotMatch(html,/cinematic-2026\.(css|js)/);
 });
 
