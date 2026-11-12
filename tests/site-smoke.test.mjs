@@ -26,7 +26,7 @@ test("interactive 3-mode lineup remains accessible and grounded in actual servic
  }
  assert.match(html,/aria-pressed="true"/);
  assert.match(js,/setAttribute\("aria-pressed",\s*String\(selected\)\)/);
- assert.match(js,/data\.serviceChoice/);
+ assert.match(js,/cta\.dataset\.serviceChoice/);
  assert.match(original,/\[data-service-choice\]/);
 });
 
