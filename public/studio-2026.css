@@ -384,3 +384,29 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
  .studio-van{animation:none!important}
  .studio-motion [data-studio-reveal]{transform:none!important;opacity:1!important}
 }
+
+/* The wide logo is a real horizontal lockup; do not letterbox or crop it. */
+.site-header .brand-official{
+ display:inline-flex;align-items:center;justify-content:flex-start;
+ width:199px;height:69px;overflow:visible;flex:none
+}
+.site-header .brand-official img{
+ display:block;width:198px;height:59px;max-width:100%;object-fit:contain
+}
+.footer-brand-official,.footer .brand.footer-brand-official{
+ display:inline-flex;align-items:center;justify-content:flex-start;
+ width:260px;height:90px;overflow:visible;max-width:100%
+}
+.footer-brand-official img,.footer .footer-brand-official img{
+ display:block;width:258px;height:80px;object-fit:contain;max-width:100%
+}
+@media(max-width:920px){
+ .site-header .brand-official{width:180px;height:65px}
+ .site-header .brand-official img{width:180px;height:54px}
+}
+@media(max-width:640px){
+ .site-header .brand-official{width:170px;height:60px}
+ .site-header .brand-official img{width:170px;height:52px}
+ .footer-brand-official,.footer .brand.footer-brand-official{width:220px;height:75px}
+ .footer-brand-official img,.footer .footer-brand-official img{width:218px;height:69px}
+}
