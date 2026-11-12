@@ -4,33 +4,35 @@ import {readFileSync,existsSync} from "node:fs";
 import {execFileSync} from "node:child_process";
 
 const html=readFileSync(new URL("../index.html",import.meta.url),"utf8");
-const css=readFileSync(new URL("../public/cinematic-2026.css",import.meta.url),"utf8");
-const js=readFileSync(new URL("../public/cinematic-2026.js",import.meta.url),"utf8");
+const css=readFileSync(new URL("../public/studio-2026.css",import.meta.url),"utf8");
+const js=readFileSync(new URL("../public/studio-2026.js",import.meta.url),"utf8");
 const original=readFileSync(new URL("../public/script.js",import.meta.url),"utf8");
 
-test("cinematic site has a real landing hero, accessible primary CTA and mobile navigation",()=>{
- assert.match(html,/class="hero cinematic-hero"/);
+test("studio hero has real navigation, customer CTAs, truck asset and mobile-friendly structure",()=>{
+ assert.match(html,/class="hero studio-hero"/);
  assert.match(html,/id="hero-title"/);
- assert.match(html,/TOUJOURS/);
- assert.match(html,/EN MOUVEMENT/);
- assert.match(html,/href="#devis">ORGANISER UN TRANSPORT/);
+ assert.match(html,/LA ROUTE/);
+ assert.match(html,/SANS LIMITE/);
+ assert.match(html,/href="#devis">DEMANDER UN TRANSPORT/);
  assert.match(html,/href="tel:\+33616294059"/);
+ assert.match(html,/class="studio-hero-grid"/);
+ assert.match(html,/class="studio-product"/);
  assert.match(html,/data-menu-button/);
  assert.match(html,/data-mobile-nav/);
 });
 
-test("interactive 3-mode lineup remains accessible and grounded in actual services",()=>{
+test("three-service lineup updates visual and quote choice accessibly",()=>{
  for(const service of ["express","dedie","suivi"]){
   assert.match(html,new RegExp('data-reel-choice="'+service+'"'));
   assert.match(js,new RegExp('\\b'+service+': \\{'));
  }
  assert.match(html,/aria-pressed="true"/);
- assert.match(js,/setAttribute\("aria-pressed",\s*String\(selected\)\)/);
- assert.match(js,/cta\.dataset\.serviceChoice/);
+ assert.match(js,/setAttribute\("aria-pressed",String\(active\)\)/);
+ assert.match(js,/link\.dataset\.serviceChoice/);
  assert.match(original,/\[data-service-choice\]/);
 });
 
-test("important content and working interactive transport tools survive the redesign",()=>{
+test("site retains every business section and all working tools",()=>{
  for(const id of ["accueil","expertise","services","suivi","flotte","couverture","methode","faq","devis"]){
   assert.match(html,new RegExp('id="'+id+'"'));
  }
@@ -38,33 +40,37 @@ test("important content and working interactive transport tools survive the rede
  assert.match(html,/data-route-studio/);
  assert.match(html,/data-quote-form/);
  assert.match(html,/assets\/vendor\/leaflet\/leaflet.js/);
- assert.match(html,/app\.ludhim\.fr|e-CMR|e-CMR numérique/);
+ assert.match(html,/e-CMR/);
 });
 
-test("all internal section anchors and new local assets resolve",()=>{
- const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]));
+test("site links and deployed assets resolve",()=>{
+ const ids=new Set([...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]));
  for(const match of html.matchAll(/<a\s+[^>]*href="#([^"]+)"/g)){
-  assert.ok(ids.has(match[1]),"Broken navigation anchor #"+match[1]);
+  assert.ok(ids.has(match[1]),"Broken navigation: #"+match[1]);
  }
- for(const path of ["public/cinematic-2026.css","public/cinematic-2026.js","public/assets/hero-night.webp",
-  "public/assets/van-cutout.webp","public/assets/vendor/leaflet/leaflet.js","public/logo-ludhim.svg","public/CNAME"]){
-  assert.ok(existsSync(new URL("../"+path,import.meta.url)),"Missing published asset: "+path);
+ for(const p of ["public/studio-2026.css","public/studio-2026.js","public/assets/van-cutout.webp",
+ "public/assets/hero-night.webp","public/assets/vendor/leaflet/leaflet.js","public/logo-ludhim.svg","public/CNAME"]){
+  assert.ok(existsSync(new URL("../"+p,import.meta.url)),"Missing: "+p);
  }
- assert.match(html,/href="\.\/cinematic-2026.css"/);
- assert.match(html,/src="\.\/cinematic-2026.js"/);
+ assert.match(html,/href="\.\/studio-2026.css"/);
+ assert.match(html,/src="\.\/studio-2026.js"/);
+ assert.doesNotMatch(html,/cinematic-2026\.(css|js)/);
 });
 
-test("new motion keeps reduced-motion users and non-JS visitors supported",()=>{
- assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
- assert.match(css,/\.motion-enabled \[data-cinematic-enter\]/);
- assert.match(css,/\[data-cinematic-enter\]\{opacity:1;transform:none\}/);
- assert.match(js,/prefers-reduced-motion: reduce/);
- assert.match(js,/window\.requestAnimationFrame/);
- assert.match(js,/passive: true/);
- assert.match(css,/@media \(max-width:640px\)/);
+test("breakpoints include mobile, small mobile, tablet and reduce-motion",()=>{
  assert.match(css,/@media\(max-width:390px\)/);
+ assert.match(css,/@media\(max-width:640px\)/);
+ assert.match(css,/@media\(max-width:920px\)/);
+ assert.match(css,/@media\(prefers-reduced-motion:reduce\)/);
+ assert.match(css,/\.studio-hero-grid\{display:flex;flex-direction:column/);
+ assert.match(css,/\.studio-product\{width:100%;min-height/);
+ assert.match(css,/\.reel-showcase-modes\{display:grid;grid-template-columns:repeat\(3/);
+ assert.match(js,/prefers-reduced-motion: reduce/);
+ assert.match(js,/max-width: 920px/);
+ assert.doesNotMatch(js,/addEventListener\("scroll"/);
 });
 
-test("the new interaction script is syntactically valid JavaScript",()=>{
- execFileSync(process.execPath,["--check",new URL("../public/cinematic-2026.js",import.meta.url).pathname]);
+test("the new UI script parses and does not depend on external CDN",()=>{
+ execFileSync(process.execPath,["--check",new URL("../public/studio-2026.js",import.meta.url).pathname]);
+ assert.doesNotMatch(js,/https?:\/\//);
 });
