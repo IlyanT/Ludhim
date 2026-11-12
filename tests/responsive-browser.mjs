@@ -71,6 +71,17 @@ try{
     await page.waitForTimeout(100);
     const buf=await page.screenshot({type:"jpeg",quality:55,fullPage:false});
     console.log("SCREENSHOT_"+width+"="+buf.toString("base64"));
+    if(width===390||width===1440){
+     for(const [section,label] of [[".reel-showcase","LINEUP"],[".reel-interlude","INTERLUDE"],[".footer","FOOTER"]]){
+      await page.evaluate(sel=>{
+       const el=document.querySelector(sel);
+       if(el)window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-66,behavior:"instant"});
+      },section);
+      await page.waitForTimeout(220);
+      const detail=await page.screenshot({type:"jpeg",quality:56,fullPage:false});
+      console.log("SCREENSHOT_"+label+"_"+width+"="+detail.toString("base64"));
+     }
+    }
    }
   }catch(error){failures.push(width+": "+error.message);console.error("FAILED "+width+" "+error.stack);}
   finally{await page.close();}
